@@ -1,6 +1,4 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+/JDCrawler/bin/cn/edu/pku/ss/*.class
+/JDCrawler/bin/cn/edu/pku/ss/*.class
+/JDCrawler/bin/cn/edu/pku/ss/*.class
+/JDCrawler/bin/cn/edu/pku/ss/*.class
