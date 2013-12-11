@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Analysis_Item_1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+
+        <script type="text/javascript">
+$(function () {
+        var arraythinkpad = [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6];
+        var arraylenovo = [2.2, 2.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 5.5];
+        var arraydell = [2.9, 2.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 6.0];
+        var arrayacer = [2.3, 2.1, 3.1, 8.6, 12.5, 14.0, 17.3, 18.9, 12.3, 8.0, 3.9, 2.0];
+        var arrayassus = [1.8, 1.9, 2.7, 8.2, 11.7, 13.0, 15.4, 17.9, 11.3, 8.4, 4.9, 3.0];
+        var arrayhp = [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8];
+        $('#container').highcharts({
+            title: {
+                text: 'Monthly Sales Number',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: jingdong.com',
+                x: -20
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Sales num (thousand)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ' thousand'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Thinkpad',
+                data: [arraythinkpad[0], arraythinkpad[1], arraythinkpad[2], arraythinkpad[3], arraythinkpad[4], arraythinkpad[5], arraythinkpad[6], arraythinkpad[7], arraythinkpad[8], arraythinkpad[9], arraythinkpad[10], arraythinkpad[11]]
+            }, {
+                name: 'Lenovo',
+                data: [arraylenovo[0], arraylenovo[1], arraylenovo[2], arraylenovo[3], arraylenovo[4], arraylenovo[5], arraylenovo[6], arraylenovo[7], arraylenovo[8], arraylenovo[9], arraylenovo[10], arraylenovo[11]]
+            }, {
+                name: 'Dell',
+                data: [arraydell[0], arraydell[1], arraydell[2], arraydell[3], arraydell[4], arraydell[5], arraydell[6], arraydell[7], arraydell[8], arraydell[9], arraydell[10], arraydell[11]]
+            }, {
+                name: 'Acer',
+                data: [arrayacer[0], arrayacer[1], arrayacer[2], arrayacer[3], arrayacer[4], arrayacer[5], arrayacer[6], arrayacer[7], arrayacer[8], arrayacer[9], arrayacer[10], arrayacer[11]]
+            }, {
+                name: 'Assus',
+                data: [arrayassus[0], arrayassus[1], arrayassus[2], arrayassus[3], arrayassus[4], arrayassus[5], arrayassus[6], arrayassus[7], arrayassus[8], arrayassus[9], arrayassus[10], arrayassus[11]]
+            }, {
+                name: 'HP',
+                data: [arrayhp[0], arrayhp[1], arrayhp[2], arrayhp[3], arrayhp[4], arrayhp[5], arrayhp[6], arrayhp[7], arrayhp[8], arrayhp[9], arrayhp[10], arrayhp[11]]
+            }]
+        });
+    });
+
+    </script>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.jsp">Sales Analysis</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.jsp">Home</a></li>
+                <li class="dropdown active">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="analysis_item_1.jsp">Analysis Item 1</a></li>
+                    <li><a href="analysis_item_2.jsp">Analysis Item 2</a></li>
+                    <li><a href="#">Analysis Item 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello, visitor!</h1>
+        <p>Here are the analysis result of computer sales in JD.com.</p>
+        <p>Thanks for <a class="btn btn-primary" role="button" href="http://www.highcharts.com/">Highcharts</a></p>
+      </div>
+    </div>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    
+    <div class="container">
+      <!-- Example row of columns -->
+      <!--
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+      -->
+      <hr>
+
+      <footer>
+        <p class="pull-right" style="position:relative;right:30px"><a class="btn btn-lg btn-primary" href="#" role="button" title="back to top">B</a></p>
+        <p style="color:#333333;text-align:center;">&copy; 2013-2014 The 4th Group of Java Class</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="dist/js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
