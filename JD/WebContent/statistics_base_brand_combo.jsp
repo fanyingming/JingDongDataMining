@@ -1,3 +1,5 @@
+<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,9 +27,52 @@
 
         <script type="text/javascript">
 $(function () {
-        var price = [5383,3112,6948,5313,4047,5102,10391,4362,6619,17434,4151,22465,4586,3665,5269,18999,5420,2067,2499,7162,11794,5899,5199];
-        var num = [1307,2744,23378,5375,21739,11276,5248,13516,1689,714,31603,132,2014,50,22268,191,8576,819,45,1081,2196,6473,151];
-        var eval = [89.06,90.2,91.97,89.04,91.52,89.8,96.57,90.35,91.77,92.99,91.45,93.94,90.76,90,91.07,92.67,88.20,82.66,82.22,91.21,92.03,90.33,90.07];
+	<%
+	int num;
+	ArrayList<String> brand_name = new ArrayList();
+	ArrayList<Integer> sale_num = new ArrayList();
+	ArrayList<Double> average_price = new ArrayList();
+	ArrayList<Double> comment_pencentage = new ArrayList();
+	if(request.getAttribute("brand_name")!=null){
+		brand_name         = (ArrayList<String>)request.getAttribute("brand_name");
+		sale_num           = (ArrayList<Integer>)request.getAttribute("sale_num");
+		average_price      = (ArrayList<Double>)request.getAttribute("average_price");
+		comment_pencentage = (ArrayList<Double>)request.getAttribute("comment_pencentage");
+	}
+	%>
+        var price = [<% 	num = brand_name.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		double display = average_price.get(i);
+    		%><%=display %>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
+        var num = [<% 	num = brand_name.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		int display = sale_num.get(i);
+    		%><%=display %>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
+        var eval = [<% 	num = brand_name.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		double display = comment_pencentage.get(i);
+    		%><%=display %>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
         $('#container').highcharts({
             chart: {
                 zoomType: 'xy'
@@ -39,15 +84,22 @@ $(function () {
                 text: 'Source: Jingdong.com'
             },
             xAxis: [{
-                categories: ['三星', '海尔', 'Thinkpad', '东芝', '联想', 'Dell',
-                    '苹果', '宏基', '富士通', '未来人类', '华硕', '外星人', 
-                    '清华同方', 'Gateway', '惠普', '雷蛇', '神舟', '七喜', 
-                    '优派', '其他', '微星', '索尼', '技嘉']
+                categories: [<% 	num = brand_name.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		String display = brand_name.get(i);
+            		%>'<%=display %>'
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>]
             }],
             yAxis: [{ // Primary yAxis
                 labels: {
                     formatter: function() {
-                        return '￥'+ this.value;
+                        return 'ï¿¥'+ this.value;
                     },
                     style: {
                         color: '#89A54E'
@@ -71,7 +123,7 @@ $(function () {
                 },
                 labels: {
                     formatter: function() {
-                        return this.value +' 台';
+                        return this.value +' å°';
                     },
                     style: {
                         color: '#4572A7'
@@ -113,7 +165,16 @@ $(function () {
                 color: '#4572A7',
                 type: 'column',
                 yAxis: 1,
-                data: [num[0], num[1], num[2], num[3], num[4], num[5], num[6], num[7], num[8], num[9], num[10], num[11], num[12], num[13], num[14], num[15], num[16], num[17], num[18], num[19], num[20], num[21], num[22]],
+                data: [<% 	num = brand_name.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>num[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>],
                 tooltip: {
                     valueSuffix: ' '
                 }
@@ -123,7 +184,16 @@ $(function () {
                 type: 'spline',
                 color: '#AA4643',
                 yAxis: 2,
-                data: [eval[0], eval[1], eval[2], eval[3], eval[4], eval[5], eval[6], eval[7], eval[8], eval[9], eval[10], eval[11], eval[12], eval[13], eval[14], eval[15], eval[16], eval[17], eval[18], eval[19], eval[20], eval[21], eval[22]],
+                data: [<% 	num = brand_name.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>eval[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>],
                 marker: {
                     enabled: false
                 },
@@ -136,7 +206,16 @@ $(function () {
                 name: 'Average Price',
                 color: '#89A54E',
                 type: 'spline',
-                data: [price[0], price[1], price[2], price[3], price[4], price[5], price[6], price[7], price[8], price[9], price[10], price[11], price[12], price[13], price[14], price[15], price[16], price[17], price[18], price[19], price[20], price[21], price[22]],
+                data: [<% 	num = brand_name.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>price[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>],
                 tooltip: {
                     valueSuffix: ' yuan'
                 }

@@ -1,6 +1,8 @@
-package JDAnalysis;
+package cn.edu.pku.ss.jddatamining.analyse;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Mainclass 
@@ -12,19 +14,20 @@ public class Mainclass
 	static HashMap<String, Analysis_base_brand> hms;
 	static Analysis_base_price []Anaprice=new Analysis_base_price[6];
 	static Analysis_base_CPU[] AnaCPU=new Analysis_base_CPU[7];
-	public static void main(String[] args) throws SQLException 
+	public static void main(String[] args) throws SQLException, IOException 
+	{
+		analyse();
+	}
+	public static void analyse() throws SQLException, IOException 
 	{
 		udb.InitDatabase();
 		for(int i=0;i<6;i++) Anaprice[i]=new Analysis_base_price();
 		for(int i=0;i<7;i++) AnaCPU[i]=new Analysis_base_CPU();
 		ht=new HashMap<String, Analysis_base_brand>();
 		hms=new HashMap<String, Analysis_base_brand>();
-		
-		
 		while(true)	
 		{
 			String info_product=udb.GetNextProductInfo();
-		
 			if(info_product=="#") break;
 			String []info=info_product.split("#");
 			ComputerInfo computer=new ComputerInfo();
@@ -48,25 +51,19 @@ public class Mainclass
 			computer.CPU=info[8];
 			computer.Ram=info[9];
 			computer.Harddrive=info[10];
-//			computer.Size=info[12];
 			if(info[12].equals("null")) computer.Size="else";
 			else if(info[12].length()>=2)
 			{
 				computer.Size=info[12].substring(0, 2);
-				if(computer.Size.equals("雾面")) computer.Size="else";
+				if(computer.Size.equals("雾面")) computer.Size="0";
 			}
 			
-			else computer.Size="else";
-//			if(info[12].length()>8) computer.Size=info[12].substring(0,7);
+			else computer.Size="0";
 			computer.Weight=info[13];
 			computer.Goodcomment=info[17];
 			computer.Mediacomment=info[18];
 			computer.Badcomment=info[19];
 			computer.Comment=info[20];
-			
-		//	System.out.println(computer.Brand+"\t"+computer.Size);
-			
-			
 			Analysis_base_brand aninfo=new Analysis_base_brand();
 			aninfo.brand=computer.Brand;
 			aninfo.price=Integer.parseInt(computer.Price);
@@ -78,15 +75,15 @@ public class Mainclass
 			aninfo.comment=computer.Comment;
 	
 			AnalysisBasePrice(aninfo,computer);
-//			AnalysisBaseBrand( aninfo, computer);
-//			AnalysisBaseCPU( aninfo, computer);
-//			AnalysisBaseSize( aninfo, computer);
+			AnalysisBaseBrand( aninfo, computer);
+			AnalysisBaseCPU( aninfo, computer);
+			AnalysisBaseSize( aninfo, computer);
 		}		
 			
 		PrintResultBasePrice();
-//		PrintResultBaseBrand();
-//		PrintResultBaseCPU();
-//		PrintResultBaseSize();
+		PrintResultBaseBrand();
+		PrintResultBaseCPU();
+		PrintResultBaseSize();
 		udb.ShutDownDatabase();
 	
  }
@@ -105,25 +102,41 @@ static void AnalysisBaseSize(Analysis_base_brand aninfo,ComputerInfo computer)
 	}
 	
 }
-static void PrintResultBaseSize()
+static void PrintResultBaseSize() throws IOException
 {
 	Iterator iter = hms.entrySet().iterator();
 	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
+	FileWriter writer=new FileWriter("D:/result/statistics_base_Size.txt");
+	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格\n";
      while(iter.hasNext())
      {
     	 	DecimalFormat df = new DecimalFormat("#.###");    
-            Map.Entry entry = (Map.Entry)iter.next();//得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型（详情见map接口声明）
-            String  key = (String)entry.getKey(); //获得key
+            Map.Entry entry = (Map.Entry)iter.next();
+            String  key = (String)entry.getKey(); 
             System.out.print(key+"\t");
+            strPrint+=key+",";
             Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
             System.out.print(info_print.modelamount+"\t");
+            strPrint+=info_print.modelamount+",";
             System.out.print(info_print.sellamount+"\t");
+            strPrint+=info_print.sellamount+",";
             String result=df.format((float)(info_print.modelamount/8.07));
             System.out.print(result+"%\t");
+            strPrint+=result+"%,";
             System.out.print((float)info_print.price/info_print.modelamount+"\n");
-            
-            
+            strPrint+=(float)info_print.price/info_print.modelamount+"\n";
      }
+     
+     try {
+         writer.write(strPrint);
+         writer.flush();
+         writer.close();
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+     
+     
+     
 }
 static void AnalysisBaseCPU(Analysis_base_brand aninfo,ComputerInfo computer)	
 {
@@ -188,17 +201,31 @@ static void AnalysisBaseCPU(Analysis_base_brand aninfo,ComputerInfo computer)
 	
 }
 	
-static void PrintResultBaseCPU()
+static void PrintResultBaseCPU() throws IOException
 {	
 	System.out.println("CPU型号\t型号数量\t销量\t平均售价");
+	FileWriter writer=new FileWriter("D:/result/statistics_base_CPU.txt");
+	String strPrint="CPU型号,型号数量,销量,平均售价";
 	for(int i=0;i<7;i++)
 	{
 		System.out.print(AnaCPU[i].xinghao+"\t");
+		strPrint+=AnaCPU[i].xinghao+",";
 		System.out.print(AnaCPU[i].modelamount+"\t");
+		strPrint+=AnaCPU[i].modelamount+",";
 		System.out.print(AnaCPU[i].sellamount+"\t");
+		strPrint+=AnaCPU[i].sellamount+",";
 		float aveprice=AnaCPU[i].price/AnaCPU[i].modelamount;
 		System.out.println(aveprice+"");
+		strPrint+=aveprice+"";
 	}
+  try {
+         writer.write(strPrint);
+         writer.flush();
+         writer.close();
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+	
 	
 }
 static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
@@ -279,20 +306,16 @@ static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
 	{
 		Anaprice[4].qujian="15000-30000";
 		Anaprice[4].sellamount+=aninfo.sellamount;
-		if(aninfo.brand.equals("惠普"))
-		{
-			System.out.println("ddddd");
-		}
+	
 		if(Anaprice[4].hmp.containsKey(computer.Brand)==false) 
 		{
 			
-			System.out.println(aninfo.sellamount);
+
 			Anaprice[4].hmp.put(computer.Brand, aninfo);
 		}
 		  else 
 		     {
-			  	System.out.println(aninfo.sellamount);
-			
+	
 		    	 Analysis_base_brand temp=Anaprice[4].hmp.get(computer.Brand);
 		    	 temp.bad+=aninfo.bad;
 		    	 temp.good+=aninfo.good;
@@ -339,29 +362,45 @@ static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
 //     }
 
 }
-static void PrintResultBasePrice()
+static void PrintResultBasePrice() throws IOException
 {	
 	System.out.println("价格区间\t销量\t品牌分布");
+	FileWriter writer=new FileWriter("D:/result/statistics_base_price.txt");
+	String strPrint=new String();
+	strPrint="价格区间,销量,品牌分布\n";
 	for(int i=0;i<6;i++)
 	{
 		System.out.print(Anaprice[i].qujian);
+		strPrint+=Anaprice[i].qujian+","+Anaprice[i].sellamount+",";
 		System.out.print("\t");
 		System.out.print(Anaprice[i].sellamount);
 		System.out.print("\t");
 		Iterator iter = Anaprice[i].hmp.entrySet().iterator();
 		 while(iter.hasNext())
 	     {
-	            Map.Entry entry = (Map.Entry)iter.next();//得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型（详情见map接口声明）
-	            
-	            String  key = (String)entry.getKey(); //获得key
+	            Map.Entry entry = (Map.Entry)iter.next();
+	            String  key = (String)entry.getKey(); 
 	            System.out.print(key+"\t");
-	            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();//获得value，都要强制转换一下
-	            DecimalFormat df = new DecimalFormat("#.#####");   
+	            strPrint+=key+",";
+	            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
+	            DecimalFormat df = new DecimalFormat("#.#####"); 
 	            System.out.print(df.format(((float)info_print.sellamount/Anaprice[i].sellamount)));
+	            strPrint+=df.format(((float)info_print.sellamount/Anaprice[i].sellamount))+",";
 	            System.out.print("\t");
 		}
+		 strPrint+="\n";
 		 System.out.println("");
 	}
+	
+	  try {
+	         writer.write(strPrint);
+	         writer.flush();
+	         writer.close();
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	
+	
 	
 }
 static void AnalysisBaseBrand(Analysis_base_brand aninfo,ComputerInfo computer)
@@ -398,37 +437,45 @@ static void AnalysisBaseBrand(Analysis_base_brand aninfo,ComputerInfo computer)
 	    	 
 	     }
 }
-static void PrintResultBaseBrand()
+static void PrintResultBaseBrand() throws IOException
 {
 	Iterator iter = ht.entrySet().iterator();
 	System.out.println("品牌\t型号数量\t平均价格\t销量\t销量百分比\t好评度\t");
+	FileWriter writer=new FileWriter("D:/result/statistics_base_brand.txt");
+	String strPrint="品牌,型号数量,平均价格,销量,销量百分比,好评度\n";
      while(iter.hasNext())
      {
-            Map.Entry entry = (Map.Entry)iter.next();//得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型（详情见map接口声明）
-            
-            String  key = (String)entry.getKey(); //获得key
+            Map.Entry entry = (Map.Entry)iter.next();
+            String  key = (String)entry.getKey(); 
             System.out.print(key+"\t");
+            strPrint+=key+",";
             
-            
-            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();//获得value，都要强制转换一下
+            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
             System.out.print((info_print.modelamount));
+            strPrint+=info_print.modelamount+",";
             System.out.print("\t");
             System.out.print((double)(info_print.price/info_print.modelamount));
+            strPrint+=(double)(info_print.price/info_print.modelamount)+",";
             System.out.print("\t");
             
             System.out.print((info_print.sellamount));
+            strPrint+=info_print.sellamount+",";
             System.out.print("\t");
             DecimalFormat df = new DecimalFormat("#.###");    
             float result=(float)(info_print.sellamount/1625.85);
             
             System.out.print(df.format(result)+"%\t");
-        
+            strPrint+=df.format(result)+"%,";
             System.out.print(((float)info_print.good/info_print.sellamount));
+            strPrint+=df.format((float)info_print.good/info_print.sellamount)+"";
             System.out.print("\n");
-           
-//            wseg.arg2=info_print.comment;
-//            if(wseg.arg2.length()>10000) wseg.arg2=wseg.arg2.substring(0, 10000);
-//       	 	String srtResult=wseg.ExecuteWordSegmentation();
+            strPrint+="\n";
+            
+            FileWriter writer2=new FileWriter("D:/result/keywords_base_brand.txt");
+        	String strPrint2="品牌,型号数量,平均价格,销量,销量百分比,好评度\n";
+//          wseg.arg2=info_print.comment;
+//          if(wseg.arg2.length()>10000) wseg.arg2=wseg.arg2.substring(0, 10000);
+//     	 	String srtResult=wseg.ExecuteWordSegmentation();
 //	    	String []words=srtResult.split("-");
 //	    	HashMap<String, Integer> hmb;
 //	    	hmb=new HashMap<String, Integer>();
@@ -457,7 +504,7 @@ static void PrintResultBaseBrand()
 //	    			 	hmb.put(words[i], number);  	
 //	    		     }
 //	    	 }
-//            
+//          
 //	    	 ByValueComparator bvc = new ByValueComparator(hmb);
 //	    	  
 //	    	  //第一种方法
@@ -469,11 +516,19 @@ static void PrintResultBaseBrand()
 //	    	   num++;
 //	    	   if(num>=10) break;
 //	    	  }
-            
-            
-//            System.out.println(value);
+          
+          
+//          System.out.println(value);
 	}
 	
+     try {
+         writer.write(strPrint);
+         writer.flush();
+         writer.close();
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+     
 	System.out.println(ht.size());
 	ht.clear();
 }

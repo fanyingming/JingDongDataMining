@@ -18,7 +18,7 @@ public class WebPageAnalyzer {
 		while (true) {
 			String itemUrl = getItemUrl(conn);
 			String itemUrlMD5 = EncryptionByMD5.getMD5(itemUrl);
-			System.out.println("寮�鍒嗘瀽锛� + itemUrl);
+			System.out.println("寮�鍒嗘瀽锛�" + itemUrl);
 			//get-price
 			// http://p.3.cn/prices/get?skuid=J_982040&type=1&area=1_72_4137&callback=cnp
 			String itemID = itemUrl.replaceAll(

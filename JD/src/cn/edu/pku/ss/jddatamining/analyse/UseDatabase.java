@@ -1,13 +1,15 @@
-package JDAnalysis;
+package cn.edu.pku.ss.jddatamining.analyse;
 
+import cn.edu.pku.ss.jddatamining.util.GlobalData;;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 public class UseDatabase {
-	 String user = "root";
-	 String password = "wangguicun";
+	 String user = GlobalData.DBUserName;
+	 String password = GlobalData.DBPassword;
 	 String url = "jdbc:mysql://localhost:3306/jdcrawler";
 	 String driver = "com.mysql.jdbc.Driver";
 	 String tableName = "items";

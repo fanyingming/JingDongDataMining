@@ -1,4 +1,4 @@
-package JDAnalysis;
+package cn.edu.pku.ss.jddatamining.analyse;
 
 import java.util.*;
 public class Analysis_base_brand {

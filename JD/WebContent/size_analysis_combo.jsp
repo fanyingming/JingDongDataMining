@@ -1,3 +1,4 @@
+<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,10 +26,63 @@
 
         <script type="text/javascript">
 $(function () {
-        var type = ['10英寸', '11英寸', '12英寸', '13英寸', '14英寸', '15英寸', '17英寸', '18英寸', '其他'];
-        var num = [778,4600,4902,8692,96036,32187,1244,0,14146];
-        var typenum = [3,51,20,56,351,197,37,1,91];
-        var price = [2665.6,4816.5,8934,7047.5,4790.9,5609.3,17414.9,29999,7525.9];
+	<%
+	int num;
+	ArrayList<String> size_name = new ArrayList();
+	ArrayList<Integer> sale_num = new ArrayList();
+	ArrayList<Integer> type_num = new ArrayList();
+	ArrayList<Double> average_price = new ArrayList();
+	if(request.getAttribute("size_name")!=null){
+		size_name      = (ArrayList<String>)request.getAttribute("size_name");
+		sale_num       = (ArrayList<Integer>)request.getAttribute("sale_num");
+		type_num       = (ArrayList<Integer>)request.getAttribute("type_num");
+		average_price  = (ArrayList<Double>)request.getAttribute("average_price");
+	}
+	%>
+        var type = [<% 	num = size_name.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		String display = size_name.get(i);
+    		%>'<%=display %>'
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
+        var num = [<% 	num = sale_num.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		int display = sale_num.get(i);
+    		%><%=display%>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
+        var typenum = [<% 	num = type_num.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		int display = type_num.get(i);
+    		%><%=display%>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
+        var price = [<% 	num = average_price.size();
+    	for( int i=0;i<num;i++)
+    	{
+    		double display = average_price.get(i);
+    		%><%=display%>
+    		<%if(i+1<num)
+    		{
+    			%>,<%
+    		}
+    	}
+    %>];
         $('#container').highcharts({
             chart: {
             },
@@ -36,12 +90,21 @@ $(function () {
                 text: 'Size Analysis Chart'
             },
             xAxis: {
-                categories: [type[0], type[1], type[2], type[3], type[4], type[5], type[6], type[7], type[8]]
+                categories: [<% 	num = average_price.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>type[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>]
             },
              yAxis: [{ // Primary yAxis
                 labels: {
                     formatter: function() {
-                        return '￥'+ this.value;
+                        return 'ï¿¥'+ this.value;
                     },
                     style: {
                         color: '#89A54E'
@@ -65,7 +128,7 @@ $(function () {
                 },
                 labels: {
                     formatter: function() {
-                        return this.value +' 台';
+                        return this.value +' å°';
                     },
                     style: {
                         color: '#4572A7'
@@ -118,13 +181,31 @@ $(function () {
                 type: 'column',
                 name: 'Sales Number',
                 yAxis: 1,
-                data: [num[0], num[1], num[2], num[3], num[4], num[5], num[6]]
+                data: [<% 	num = average_price.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>num[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>]
             
             }, {
                 type: 'spline',
                 name: 'Price',
                 yAxis: 2,
-                data: [price[0], price[1], price[2], price[3], price[4], price[5], price[6]],
+                data: [<% 	num = average_price.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>price[<%=i%>]
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>],
                 marker: {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[3],
@@ -133,35 +214,21 @@ $(function () {
             }, {
                 type: 'pie',
                 name: 'Numbers of Computers use',
-                data: [{
-                    name: type[0],
-                    y: typenum[0],
-                    color: Highcharts.getOptions().colors[0]
-                }, {
-                    name: type[1],
-                    y: typenum[1],
-                    color: Highcharts.getOptions().colors[1]
-                }, {
-                    name: type[2],
-                    y: typenum[2],
-                    color: Highcharts.getOptions().colors[2]
-                }, {
-                    name: type[3],
-                    y: typenum[3],
-                    color: Highcharts.getOptions().colors[3]
-                }, {
-                    name: type[4],
-                    y: typenum[4],
-                    color: Highcharts.getOptions().colors[4]
-                }, {
-                    name: type[5],
-                    y: typenum[5],
-                    color: Highcharts.getOptions().colors[5]
-                }, {
-                    name: type[6],
-                    y: typenum[6],
-                    color: Highcharts.getOptions().colors[6]
-                }],
+                data: [<% 	num = average_price.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		%>
+            		{
+                        name: type[<%=i%>],
+                        y: typenum[<%=i%>],
+                        color: Highcharts.getOptions().colors[<%=i%>]
+                    }
+            		<%if(i+1<num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>],
                 center: [100, 80],
                 size: 100,
                 showInLegend: false,
