@@ -1,12 +1,15 @@
-package cn.edu.pku.ss.jddatamining.analyse;
-import java.io.*;
+package JDAnalysis;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class WordSegment 
 {
 	String dir_exe="";
 	String arg1="";
 	String arg2="";
 	
-	String strResult="#";
+	
 	
 	public WordSegment()
 	{
@@ -18,30 +21,36 @@ public class WordSegment
 	@SuppressWarnings("finally")
 	public String ExecuteWordSegmentation()
 	{
+		String lineStr="#";  
 		try 
 		{ 
 			Process p;
+		
+//			arg2="å¼€å§‹ nihao \tæˆ‘æ˜¯";
+			arg2=arg2.replaceAll(" ", "");
+			arg2=arg2.replaceAll("\t", "");
 			String cmd=dir_exe+arg1+arg2;
 			p=java.lang.Runtime.getRuntime().exec(cmd); 
 		
 			BufferedInputStream br = new BufferedInputStream(p.getInputStream());
 			BufferedReader inBr = new BufferedReader(new InputStreamReader(br));  
-			String lineStr=null;  
+			
 			lineStr = inBr.readLine();
 			inBr.close();
 			br.close();
-			
-			String []segresult=lineStr.split("-");
-			strResult=segresult[0];
-			if(segresult[0].length()<2) strResult=segresult[0]+segresult[1];
-			else if(segresult[0].length()==2&&segresult[1].length()<2) strResult=segresult[0]+segresult[1];
+			p.destroy();
+			return lineStr;
+//			String []segresult=lineStr.split("-");
+//			strResult=segresult[0];
+//			if(segresult[0].length()<2) strResult=segresult[0]+segresult[1];
+//			else if(segresult[0].length()==2&&segresult[1].length()<2) strResult=segresult[0]+segresult[1];
 		} catch (IOException e) 
 		{ 
-			System.out.println("·Ö´Ê³ÌÐò´íÎó");
+			System.out.println("åˆ†è¯ç¨‹åºé”™è¯¯");
 			e.printStackTrace(); 
 		} finally
 		{
-			return strResult;
+			return lineStr;
 		}
 	}
 }

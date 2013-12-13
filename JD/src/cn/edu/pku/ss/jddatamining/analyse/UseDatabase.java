@@ -1,11 +1,16 @@
-package cn.edu.pku.ss.jddatamining.analyse;
-import java.sql.*;
+package JDAnalysis;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 public class UseDatabase {
 	 String user = "root";
 	 String password = "wangguicun";
 	 String url = "jdbc:mysql://localhost:3306/jdcrawler";
 	 String driver = "com.mysql.jdbc.Driver";
-	 String tableName = "results";
+	 String tableName = "items";
 	 String sqlstr;
 	 Connection con = null;
 	 Statement stmt = null;
@@ -22,21 +27,33 @@ public class UseDatabase {
 		 }
          catch(ClassNotFoundException e1)
          {
-             System.out.println("Êı¾İ¿âÇı¶¯²»´æÔÚ£¡");
+             System.out.println("æ•°æ®åº“é©±åŠ¨ä¸å­˜åœ¨ï¼");
              System.out.println(e1.toString());
          }
          catch(SQLException e2)
          {
-             System.out.println("Êı¾İ¿â´æÔÚÒì³££¡");
+             System.out.println("æ•°æ®åº“å­˜åœ¨å¼‚å¸¸ï¼");
              System.out.println(e2.toString());
          }
 	}
 	public String GetNextProductInfo() throws SQLException
 	{
-		if(rs.next()) return rs.getString(3)+"&"+rs.getString(4);
+		if(rs.next()) 
+			{
+				String temp = "#";
+				for(int i=5;i<25;i++)
+				{
+					if(rs.getString(i).length()<1) temp=temp+"æ— "+"#";
+					else temp=temp+rs.getString(i)+"#";
+				}
+				return temp;
+			}
 		else return "#";
 	}
-	
+	public void SetProductInfo() throws SQLException
+	{
+		
+	}
 	public void ShutDownDatabase()
 	{
 		  try
@@ -47,7 +64,7 @@ public class UseDatabase {
           }
           catch(SQLException e)
           {
-         	 System.out.println("Êı¾İ¿â´æÔÚÒì³£!");
+         	 System.out.println("æ•°æ®åº“å­˜åœ¨å¼‚å¸¸!");
               System.out.println(e.toString());
           } 
 	}
