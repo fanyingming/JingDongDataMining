@@ -25,7 +25,7 @@
 
         <script type="text/javascript">
 $(function () {
-    var arraypercent = [14.3,18.6,12.9,11.1,7.2,12.14,23.69];
+    var arraypercent = [0.8,1.69,14.38,3.31,13.37,6.94,3.23,8.31,1.04,0.44,19.44,0.08,1.24,0.03,13.7,0.12,5.28,0.5,0.03,13.7,0.12,5.28,0.5,0.03,0.67,1.35,3.98,0.09];
     $('#container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -54,18 +54,34 @@ $(function () {
             type: 'pie',
             name: 'Computer share',
             data: [
-                ['Thinkpad',   arraypercent[0]],
-                ['Lenovo',     arraypercent[1]],
+                ['三星',   arraypercent[0]],
+                ['海尔',     arraypercent[1]],
                 {
-                    name: 'Dell',
+                    name: 'Thinkpad',
                     y: arraypercent[2],
                     sliced: true,
                     selected: true
                 },
-                ['Acer',    arraypercent[3]],
-                ['Assus',   arraypercent[4]],
-                ['hp',      arraypercent[5]],
-                ['Others',  arraypercent[6]]
+                ['东芝',    arraypercent[3]],
+                ['联想',   arraypercent[4]],
+                ['Dell',      arraypercent[5]],
+                ['苹果',      arraypercent[6]],
+                ['宏基',      arraypercent[7]],
+                ['富士通',      arraypercent[8]],
+                ['未来人类',      arraypercent[9]],
+                ['华硕',      arraypercent[10]],
+                ['外星人',      arraypercent[11]],
+                ['清华同方',      arraypercent[12]],
+                ['Gateway',      arraypercent[13]],
+                ['惠普',      arraypercent[14]],
+                ['雷蛇',      arraypercent[15]],
+                ['神舟',      arraypercent[16]],
+                ['七喜',      arraypercent[17]],
+                ['优派',      arraypercent[18]],
+                ['其他',      arraypercent[19]],
+                ['微星',      arraypercent[20]],
+                ['Sony',      arraypercent[21]],
+                ['技嘉',  arraypercent[22]]
             ]
         }]
     });
@@ -105,9 +121,12 @@ $(function () {
                 <li class="dropdown active">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="analysis_item_1.jsp">Analysis Item 1</a></li>
-                    <li><a href="analysis_item_2.jsp">Analysis Item 2</a></li>
-                    <li><a href="analysis_item_3.jsp">Analysis Item 3</a></li>
+                    <li><a href="statistics_base_brand_combo.jsp">All Brands Computer Sales Analysis Chart</a></li>
+                    <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
+                    <li><a href="analysis_item_2.jsp">Sales Percent Chart</a></li>
+                    <li><a href="cpu_analysis_combo.jsp">CPU Analysis Chart</a></li>
+                    <li><a href="size_analysis_combo.jsp">Size Analysis Chart</a></li>
+                    <li><a href="analysis_item_3.jsp">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
                 <li><a href="#about">About</a></li>

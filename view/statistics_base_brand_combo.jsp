@@ -25,73 +25,125 @@
 
         <script type="text/javascript">
 $(function () {
-        var arraythinkpad = [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6];
-        var arraylenovo = [2.2, 2.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 5.5];
-        var arraydell = [2.9, 2.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 6.0];
-        var arrayacer = [2.3, 2.1, 3.1, 8.6, 12.5, 14.0, 17.3, 18.9, 12.3, 8.0, 3.9, 2.0];
-        var arrayassus = [1.8, 1.9, 2.7, 8.2, 11.7, 13.0, 15.4, 17.9, 11.3, 8.4, 4.9, 3.0];
-        var arrayhp = [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8];
-        var arrayone = [1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.3];
-        var arraytwo = [1.7, 1.67, 3.2, 2.13, 0, 17.9, 0, 5.1, 1, 7.6, 1.66, 4.92, 0, 8.9, 11.2, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.2];
-        var arraythree = [0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 5];
-        var arrayfour = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 5.1, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 8.9, 11.2, 4];
-        var arrayfive = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 3];
-        var arraysix = [10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 2];
+        var price = [5383,3112,6948,5313,4047,5102,10391,4362,6619,17434,4151,22465,4586,3665,5269,18999,5420,2067,2499,7162,11794,5899,5199];
+        var num = [1307,2744,23378,5375,21739,11276,5248,13516,1689,714,31603,132,2014,50,22268,191,8576,819,45,1081,2196,6473,151];
+        var eval = [89.06,90.2,91.97,89.04,91.52,89.8,96.57,90.35,91.77,92.99,91.45,93.94,90.76,90,91.07,92.67,88.20,82.66,82.22,91.21,92.03,90.33,90.07];
         $('#container').highcharts({
+            chart: {
+                zoomType: 'xy'
+            },
             title: {
-                text: 'Different Price Range Sales Percent',
-                x: -20 //center
+                text: 'All Brands Computer Sales Analysis Chart'
             },
             subtitle: {
-                text: 'Source: jingdong.com',
-                x: -20
+                text: 'Source: Jingdong.com'
             },
-            xAxis: {
+            xAxis: [{
                 categories: ['三星', '海尔', 'Thinkpad', '东芝', '联想', 'Dell',
-                    '苹果', '宏基', '富士通', '未来人类', 'Asus/华硕', '外星人', 
+                    '苹果', '宏基', '富士通', '未来人类', '华硕', '外星人', 
                     '清华同方', 'Gateway', '惠普', '雷蛇', '神舟', '七喜', 
                     '优派', '其他', '微星', '索尼', '技嘉']
-            },
-            yAxis: {
-                title: {
-                    text: 'Sales percent(%)'
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    formatter: function() {
+                        return '￥'+ this.value;
+                    },
+                    style: {
+                        color: '#89A54E'
+                    }
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
+                title: {
+                    text: 'Average Price',
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                opposite: true
+    
+            }, { // Secondary yAxis
+                gridLineWidth: 0,
+                title: {
+                    text: 'Total Sales Num',
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value +' 台';
+                    },
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+    
+            }, { // Tertiary yAxis
+                gridLineWidth: 0,
+                title: {
+                    text: 'Favourable Comment',
+                    style: {
+                        color: '#AA4643'
+                    }
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value +' %';
+                    },
+                    style: {
+                        color: '#AA4643'
+                    }
+                },
+                opposite: true
+            }],
             tooltip: {
-                valueSuffix: ' %'
+                shared: true
             },
             legend: {
                 layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                align: 'left',
+                x: 120,
+                verticalAlign: 'top',
+                y: 80,
+                floating: true,
+                backgroundColor: '#FFFFFF'
             },
             series: [{
-                name: '3000以下',
-                data: [arrayone[0], arrayone[1], arrayone[2], arrayone[3], arrayone[4], arrayone[5], arrayone[6], arrayone[7], arrayone[8], arrayone[9], arrayone[10], arrayone[11], arrayone[12], arrayone[13], arrayone[14], arrayone[15], arrayone[16], arrayone[17], arrayone[18], arrayone[19], arrayone[20], arrayone[21], arrayone[22]]
+                name: 'Total Sales Num',
+                color: '#4572A7',
+                type: 'column',
+                yAxis: 1,
+                data: [num[0], num[1], num[2], num[3], num[4], num[5], num[6], num[7], num[8], num[9], num[10], num[11], num[12], num[13], num[14], num[15], num[16], num[17], num[18], num[19], num[20], num[21], num[22]],
+                tooltip: {
+                    valueSuffix: ' '
+                }
+    
             }, {
-                name: '3000-5000',
-                data: [arraytwo[0], arraytwo[1], arraytwo[2], arraytwo[3], arraytwo[4], arraytwo[5], arraytwo[6], arraytwo[7], arraytwo[8], arraytwo[9], arraytwo[10], arraytwo[11], arraytwo[12], arraytwo[13], arraytwo[14], arraytwo[15], arraytwo[16], arraytwo[17], arraytwo[18], arraytwo[19], arraytwo[20], arraytwo[21], arraytwo[22]]
+                name: 'Favourable Comment',
+                type: 'spline',
+                color: '#AA4643',
+                yAxis: 2,
+                data: [eval[0], eval[1], eval[2], eval[3], eval[4], eval[5], eval[6], eval[7], eval[8], eval[9], eval[10], eval[11], eval[12], eval[13], eval[14], eval[15], eval[16], eval[17], eval[18], eval[19], eval[20], eval[21], eval[22]],
+                marker: {
+                    enabled: false
+                },
+                dashStyle: 'shortdot',
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+    
             }, {
-                name: '5000-8000',
-                data: [arraythree[0], arraythree[1], arraythree[2], arraythree[3], arraythree[4], arraythree[5], arraythree[6], arraythree[7], arraythree[8], arraythree[9], arraythree[10], arraythree[11], arraythree[12], arraythree[13], arraythree[14], arraythree[15], arraythree[16], arraythree[17], arraythree[18], arraythree[19], arraythree[20], arraythree[21], arraythree[22]]
-            }, {
-                name: '8000-15000',
-                data: [arrayfour[0], arrayfour[1], arrayfour[2], arrayfour[3], arrayfour[4], arrayfour[5], arrayfour[6], arrayfour[7], arrayfour[8], arrayfour[9], arrayfour[10], arrayfour[11], arrayfour[12], arrayfour[13], arrayfour[14], arrayfour[15], arrayfour[16], arrayfour[17], arrayfour[18], arrayfour[19], arrayfour[20], arrayfour[21], arrayfour[22]]
-            }, {
-                name: '15000-30000',
-                data: [arrayfive[0], arrayfive[1], arrayfive[2], arrayfive[3], arrayfive[4], arrayfive[5], arrayfive[6], arrayfive[7], arrayfive[8], arrayfive[9], arrayfive[10], arrayfive[11], arrayfive[12], arrayfive[13], arrayfive[14], arrayfive[15], arrayfive[16], arrayfive[17], arrayfive[18], arrayfive[19], arrayfive[20], arrayfive[21], arrayfive[22]]
-            }, {
-                name: '30000以上',
-                data: [arraysix[0], arraysix[1], arraysix[2], arraysix[3], arraysix[4], arraysix[5], arraysix[6], arraysix[7], arraysix[8], arraysix[9], arraysix[10], arraysix[11], arraysix[12], arraysix[13], arraysix[14], arraysix[15], arraysix[16], arraysix[17], arraysix[18], arraysix[19], arraysix[20], arraysix[21], arraysix[22]]
+                name: 'Average Price',
+                color: '#89A54E',
+                type: 'spline',
+                data: [price[0], price[1], price[2], price[3], price[4], price[5], price[6], price[7], price[8], price[9], price[10], price[11], price[12], price[13], price[14], price[15], price[16], price[17], price[18], price[19], price[20], price[21], price[22]],
+                tooltip: {
+                    valueSuffix: ' yuan'
+                }
             }]
         });
     });
+    
 
     </script>
 

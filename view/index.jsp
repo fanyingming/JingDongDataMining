@@ -48,9 +48,12 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="analysis_item_1.jsp">Analysis Item 1</a></li>
-                    <li><a href="analysis_item_2.jsp">Analysis Item 2</a></li>
-                    <li><a href="analysis_item_3.jsp">Analysis Item 3</a></li>
+                    <li><a href="statistics_base_brand_combo.jsp">All Brands Computer Sales Analysis Chart</a></li>
+                    <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
+                    <li><a href="analysis_item_2.jsp">Sales Percent Chart</a></li>
+                    <li><a href="cpu_analysis_combo.jsp">CPU Analysis Chart</a></li>
+                    <li><a href="size_analysis_combo.jsp">Size Analysis Chart</a></li>
+                    <li><a href="analysis_item_3.jsp">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
                 <li><a href="#about">About</a></li>
@@ -97,7 +100,7 @@
             <div class="carousel-caption">
               <h1  class="pull-left" style="position:relative;bottom:80px;">Let's begin</h1>
               <p  class="pull-left" style="position:relative;bottom:40px;">If you want to buy or sell something, sales analysis system is a good helper!</p>
-              <p  class="pull-left" style="position:relative;bottom:10px;"><a class="btn btn-lg btn-primary" href="#" role="button">Use it now</a></p>
+              <p  class="pull-left" style="position:relative;bottom:10px;"><a class="btn btn-lg btn-primary" href="statistics_base_brand_combo.jsp" role="button">Use it now</a></p>
             </div>
           </div>
         </div>
@@ -115,24 +118,7 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+        <h1 style="color:#000000;text-align:center;font-size:60px">Welcome To Our Pages!</h1>
       </div><!-- /.row -->
 
       <hr class="featurette-divider">
