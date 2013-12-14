@@ -79,12 +79,13 @@ public class ReadData extends HttpServlet {
 				request.setAttribute("average_price", average_price);
 				request.getRequestDispatcher("cpu_analysis_combo.jsp").forward(
 						request, response);
-			}else if(type.equals("statistics_base_brand_combo")){//TXT换行有问题
+			}else if(type.equals("statistics_base_brand_combo")|| type.equals("sale_share")){//TXT换行有问题
 				String path = request.getRealPath("\\data\\statistics_base_brand.txt");
 				file = new Scanner(new File(path));
 				ArrayList<String> brand_name = new ArrayList();
 				ArrayList<Integer> sale_num = new ArrayList();
 				ArrayList<Double> average_price = new ArrayList();
+				ArrayList<Double> sale_share = new ArrayList();
 				ArrayList<Double> comment_pencentage = new ArrayList();
 				while (file.hasNext()) {
 					String[] line;
@@ -98,15 +99,24 @@ public class ReadData extends HttpServlet {
 						brand_name.add(words[0]);
 						average_price.add(Double.parseDouble(words[2]));
 						sale_num.add(Integer.parseInt(words[3]));
+						sale_share.add(Double.parseDouble(words[4]));
 						comment_pencentage.add(Double.parseDouble(words[5]));
 					}
 				}
 				request.setAttribute("brand_name", brand_name);
 				request.setAttribute("average_price", average_price);
+				request.setAttribute("sale_share", sale_share);
 				request.setAttribute("sale_num", sale_num);
 				request.setAttribute("comment_pencentage", comment_pencentage);
-				request.getRequestDispatcher("statistics_base_brand_combo.jsp").forward(
-						request, response);
+				if (type.equals("statistics_base_brand_combo")){
+					request.getRequestDispatcher("statistics_base_brand_combo.jsp").forward(
+							request, response);
+				}
+				else{
+					request.getRequestDispatcher("sale_share.jsp").forward(
+							request, response);
+				}
+					
 			}else if(type.equals("price_range")){
 				String path = request.getRealPath("\\data\\statistics_base_price.txt");
 				file = new Scanner(new File(path));

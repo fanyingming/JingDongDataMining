@@ -52,7 +52,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="ReadData?type=statistics_base_brand_combo">All Brands Computer Sales Analysis Chart</a></li>
                     <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
-                    <li><a href="analysis_item_2.jsp">Sales Percent Chart</a></li>
+                    <li><a href="ReadData?type=sale_share">Sales Percent Chart</a></li>
                     <li><a href="ReadData?type=cpu_analysis_combo">CPU Analysis Chart</a></li>
                     <li><a href="ReadData?type=size_analysis_combo">Size Analysis Chart</a></li>
                     <li><a href="ReadData?type=price_range">Different Price Range Sales Percent</a></li>

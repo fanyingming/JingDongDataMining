@@ -468,7 +468,7 @@ static void PrintResultBaseBrand() throws IOException
             float result=(float)(info_print.sellamount/1625.85);
             
             System.out.print(df.format(result)+"%\t");
-            strPrint+=df.format(result)+"%,";
+            strPrint+=df.format(result)+",";
             System.out.print(((float)info_print.good/info_print.sellamount));
             strPrint+=df.format((float)info_print.good/info_print.sellamount)+"";
             System.out.print("\n");

@@ -1,3 +1,5 @@
+<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +27,26 @@
 
         <script type="text/javascript">
 $(function () {
-    var arraypercent = [0.8,1.69,14.38,3.31,13.37,6.94,3.23,8.31,1.04,0.44,19.44,0.08,1.24,0.03,13.7,0.12,5.28,0.5,0.03,13.7,0.12,5.28,0.5,0.03,0.67,1.35,3.98,0.09];
+	<%
+	int num;
+	ArrayList<String> brand_name = new ArrayList();
+	ArrayList<Double> sale_share = new ArrayList();
+	if(request.getAttribute("brand_name")!=null){
+		brand_name = (ArrayList<String>)request.getAttribute("brand_name");
+		sale_share = (ArrayList<Double>)request.getAttribute("sale_share");
+	}
+	%>
+    var arraypercent = [<% 	num = brand_name.size();
+	for( int i=0;i<num;i++)
+	{
+		double display = sale_share.get(i);
+		%><%=display %>
+		<%if(i+1<num)
+		{
+			%>,<%
+		}
+	}
+%>];
     $('#container').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -54,34 +75,33 @@ $(function () {
             type: 'pie',
             name: 'Computer share',
             data: [
-                ['三星',   arraypercent[0]],
-                ['海尔',     arraypercent[1]],
-                {
-                    name: 'Thinkpad',
-                    y: arraypercent[2],
-                    sliced: true,
-                    selected: true
-                },
-                ['东芝',    arraypercent[3]],
-                ['联想',   arraypercent[4]],
-                ['Dell',      arraypercent[5]],
-                ['苹果',      arraypercent[6]],
-                ['宏基',      arraypercent[7]],
-                ['富士通',      arraypercent[8]],
-                ['未来人类',      arraypercent[9]],
-                ['华硕',      arraypercent[10]],
-                ['外星人',      arraypercent[11]],
-                ['清华同方',      arraypercent[12]],
-                ['Gateway',      arraypercent[13]],
-                ['惠普',      arraypercent[14]],
-                ['雷蛇',      arraypercent[15]],
-                ['神舟',      arraypercent[16]],
-                ['七喜',      arraypercent[17]],
-                ['优派',      arraypercent[18]],
-                ['其他',      arraypercent[19]],
-                ['微星',      arraypercent[20]],
-                ['Sony',      arraypercent[21]],
-                ['技嘉',  arraypercent[22]]
+                <% 	num = brand_name.size();
+            	for( int i=0;i<num;i++)
+            	{
+            		String display = brand_name.get(i);
+            		if(i==2){
+            			%>
+            			 {
+                             name: '<%=brand_name.get(2)%>',
+                             y: arraypercent[2],
+                             sliced: true,
+                             selected: true
+                         },
+
+            			<%
+            		}
+            		else{
+            			%>['<%=display %>', arraypercent[<%=i%>]]
+                        		<%if(i+1<num)
+                        		{
+                        			%>,<%
+                        		}
+            		}
+            		
+            	}
+            %>
+            
+
             ]
         }]
     });
