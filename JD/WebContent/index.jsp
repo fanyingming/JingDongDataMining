@@ -45,8 +45,8 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="crawl">analyse</a></li>
-                <li><a href="Analyse">analyse</a></li>
+                <li><a href="crawl">crawl</a></li>
+                <li><a href="Analyse">mining</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
