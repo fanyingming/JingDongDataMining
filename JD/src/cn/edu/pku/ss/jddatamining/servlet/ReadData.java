@@ -114,14 +114,13 @@ public class ReadData extends HttpServlet {
 				ArrayList<Integer> range_sale_num = new ArrayList();
 				String[][] brand_name      = new String[50][50];
 				double[][] brand_share     = new double[50][50];
-				double list_num =0;
+				int list_num =0;
 				double brand_num=0;
-				int row_num = 0;
 				while (file.hasNext()) {
 					String[] line;
 					lines = file.nextLine();
 					line = lines.split(";");
-					for (int i = 0; i < line.length; i++,row_num++) {
+					for (int i = 0; i < line.length; i++) {
 						String[] words = line[i].split(",");
 						item_count++;
 						if(item_count==1)
@@ -129,15 +128,17 @@ public class ReadData extends HttpServlet {
 						range_name.add(words[0]);
 						range_sale_num.add(Integer.parseInt(words[1]));
 						for(int j=2,count=0;j<words.length;j+=2,count++){
-							brand_name[row_num][count]  = words[j];
-							brand_share[row_num][count] = Double.parseDouble(words[j+1]);
+							brand_name[list_num][count]  = words[j];
+							brand_share[list_num][count] = Double.parseDouble(words[j+1]);
 							brand_num++;//品牌数，会重复行数的倍数
 						}
 						list_num++;//行数
 					}
 				}
-				request.setAttribute("brand_num", (int)(brand_num/list_num));
-				request.setAttribute("list_num", (int)list_num);
+				double temp = brand_num/list_num;
+				int intt = (int)temp;
+				request.setAttribute("brand_num", intt);
+				request.setAttribute("list_num", list_num);
 				request.setAttribute("range_name", range_name);
 				request.setAttribute("range_sale_num", range_sale_num);
 				request.setAttribute("brand_name", brand_name);
