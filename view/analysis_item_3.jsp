@@ -25,18 +25,12 @@
 
         <script type="text/javascript">
 $(function () {
-        var arraythinkpad = [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6];
-        var arraylenovo = [2.2, 2.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 5.5];
-        var arraydell = [2.9, 2.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 6.0];
-        var arrayacer = [2.3, 2.1, 3.1, 8.6, 12.5, 14.0, 17.3, 18.9, 12.3, 8.0, 3.9, 2.0];
-        var arrayassus = [1.8, 1.9, 2.7, 8.2, 11.7, 13.0, 15.4, 17.9, 11.3, 8.4, 4.9, 3.0];
-        var arrayhp = [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8];
-        var arrayone = [1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.3];
-        var arraytwo = [1.7, 1.67, 3.2, 2.13, 0, 17.9, 0, 5.1, 1, 7.6, 1.66, 4.92, 0, 8.9, 11.2, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.2];
-        var arraythree = [0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 5];
-        var arrayfour = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 5.1, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 8.9, 11.2, 4];
-        var arrayfive = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 3];
-        var arraysix = [10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 2];
+        var array1 = [1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.3];
+        var array2 = [1.7, 1.67, 3.2, 2.13, 0, 17.9, 0, 5.1, 1, 7.6, 1.66, 4.92, 0, 8.9, 11.2, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.2];
+        var array3 = [0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 5];
+        var array4 = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 5.1, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 8.9, 11.2, 4];
+        var array5 = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 3];
+        var array6 = [10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 2];
         $('#container').highcharts({
             title: {
                 text: 'Different Price Range Sales Percent',
@@ -73,22 +67,22 @@ $(function () {
             },
             series: [{
                 name: '3000以下',
-                data: [arrayone[0], arrayone[1], arrayone[2], arrayone[3], arrayone[4], arrayone[5], arrayone[6], arrayone[7], arrayone[8], arrayone[9], arrayone[10], arrayone[11], arrayone[12], arrayone[13], arrayone[14], arrayone[15], arrayone[16], arrayone[17], arrayone[18], arrayone[19], arrayone[20], arrayone[21], arrayone[22]]
+                data: [array1[0], array1[1], array1[2], array1[3], array1[4], array1[5], array1[6], array1[7], array1[8], array1[9], array1[10], array1[11], array1[12], array1[13], array1[14], array1[15], array1[16], array1[17], array1[18], array1[19], array1[20], array1[21], array1[22]]
             }, {
                 name: '3000-5000',
-                data: [arraytwo[0], arraytwo[1], arraytwo[2], arraytwo[3], arraytwo[4], arraytwo[5], arraytwo[6], arraytwo[7], arraytwo[8], arraytwo[9], arraytwo[10], arraytwo[11], arraytwo[12], arraytwo[13], arraytwo[14], arraytwo[15], arraytwo[16], arraytwo[17], arraytwo[18], arraytwo[19], arraytwo[20], arraytwo[21], arraytwo[22]]
+                data: [array2[0], array2[1], array2[2], array2[3], array2[4], array2[5], array2[6], array2[7], array2[8], array2[9], array2[10], array2[11], array2[12], array2[13], array2[14], array2[15], array2[16], array2[17], array2[18], array2[19], array2[20], array2[21], array2[22]]
             }, {
                 name: '5000-8000',
-                data: [arraythree[0], arraythree[1], arraythree[2], arraythree[3], arraythree[4], arraythree[5], arraythree[6], arraythree[7], arraythree[8], arraythree[9], arraythree[10], arraythree[11], arraythree[12], arraythree[13], arraythree[14], arraythree[15], arraythree[16], arraythree[17], arraythree[18], arraythree[19], arraythree[20], arraythree[21], arraythree[22]]
+                data: [array3[0], array3[1], array3[2], array3[3], array3[4], array3[5], array3[6], array3[7], array3[8], array3[9], array3[10], array3[11], array3[12], array3[13], array3[14], array3[15], array3[16], array3[17], array3[18], array3[19], array3[20], array3[21], array3[22]]
             }, {
                 name: '8000-15000',
-                data: [arrayfour[0], arrayfour[1], arrayfour[2], arrayfour[3], arrayfour[4], arrayfour[5], arrayfour[6], arrayfour[7], arrayfour[8], arrayfour[9], arrayfour[10], arrayfour[11], arrayfour[12], arrayfour[13], arrayfour[14], arrayfour[15], arrayfour[16], arrayfour[17], arrayfour[18], arrayfour[19], arrayfour[20], arrayfour[21], arrayfour[22]]
+                data: [array4[0], array4[1], array4[2], array4[3], array4[4], array4[5], array4[6], array4[7], array4[8], array4[9], array4[10], array4[11], array4[12], array4[13], array4[14], array4[15], array4[16], array4[17], array4[18], array4[19], array4[20], array4[21], array4[22]]
             }, {
                 name: '15000-30000',
-                data: [arrayfive[0], arrayfive[1], arrayfive[2], arrayfive[3], arrayfive[4], arrayfive[5], arrayfive[6], arrayfive[7], arrayfive[8], arrayfive[9], arrayfive[10], arrayfive[11], arrayfive[12], arrayfive[13], arrayfive[14], arrayfive[15], arrayfive[16], arrayfive[17], arrayfive[18], arrayfive[19], arrayfive[20], arrayfive[21], arrayfive[22]]
+                data: [array5[0], array5[1], array5[2], array5[3], array5[4], array5[5], array5[6], array5[7], array5[8], array5[9], array5[10], array5[11], array5[12], array5[13], array5[14], array5[15], array5[16], array5[17], array5[18], array5[19], array5[20], array5[21], array5[22]]
             }, {
                 name: '30000以上',
-                data: [arraysix[0], arraysix[1], arraysix[2], arraysix[3], arraysix[4], arraysix[5], arraysix[6], arraysix[7], arraysix[8], arraysix[9], arraysix[10], arraysix[11], arraysix[12], arraysix[13], arraysix[14], arraysix[15], arraysix[16], arraysix[17], arraysix[18], arraysix[19], arraysix[20], arraysix[21], arraysix[22]]
+                data: [array6[0], array6[1], array6[2], array6[3], array6[4], array6[5], array6[6], array6[7], array6[8], array6[9], array6[10], array6[11], array6[12], array6[13], array6[14], array6[15], array6[16], array6[17], array6[18], array6[19], array6[20], array6[21], array6[22]]
             }]
         });
     });
@@ -161,17 +155,17 @@ $(function () {
       <div class="row">
         <div class="col-md-4">
           <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p>D1c id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. D1c sed odio dui. </p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p>D1c id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. D1c sed odio dui. </p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
        </div>
         <div class="col-md-4">
           <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>D1c sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
       </div>

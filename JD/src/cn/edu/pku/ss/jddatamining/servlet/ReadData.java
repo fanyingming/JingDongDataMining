@@ -47,8 +47,8 @@ public class ReadData extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String type = request.getParameter("type");
 		Scanner file;
-		String line;
-		FileWriter writer=new FileWriter("D:/result/statistics_base_brand.txt");
+		String lines;
+		int item_count = 0;
 		
 		try {
 			if (type.equals("cpu_analysis_combo")) {
@@ -58,15 +58,20 @@ public class ReadData extends HttpServlet {
 				ArrayList<Integer> cpu_num = new ArrayList();
 				ArrayList<Integer> sale_num = new ArrayList();
 				ArrayList<Double> average_price = new ArrayList();
-				file.nextLine();
 				while (file.hasNext()) {
-					line = file.nextLine();
-					String[] words = line.split(",");
-					
-					cpu_type.add(words[0]);
-					cpu_num.add(Integer.parseInt(words[1]));
-					sale_num.add(Integer.parseInt(words[2]));
-					average_price.add(Double.parseDouble(words[3]));
+					String[] line;
+					lines = file.nextLine();
+					line = lines.split(";");
+					for (int i = 0; i < line.length; i++) {
+						String[] words = line[i].split(",");
+						item_count++;
+						if(item_count==1)
+							continue;//跳过第一行的汉字描述部分。
+						cpu_type.add(words[0]);
+						cpu_num.add(Integer.parseInt(words[1]));
+						sale_num.add(Integer.parseInt(words[2]));
+						average_price.add(Double.parseDouble(words[3]));
+					}
 				}
 				request.setAttribute("cpu_type", cpu_type);
 				request.setAttribute("cpu_num", cpu_num);
@@ -76,27 +81,68 @@ public class ReadData extends HttpServlet {
 						request, response);
 			}else if(type.equals("statistics_base_brand_combo")){//TXT换行有问题
 				String path = request.getRealPath("\\data\\statistics_base_brand.txt");
-				file = new Scanner(
-						new File(path));
+				file = new Scanner(new File(path));
 				ArrayList<String> brand_name = new ArrayList();
 				ArrayList<Integer> sale_num = new ArrayList();
 				ArrayList<Double> average_price = new ArrayList();
 				ArrayList<Double> comment_pencentage = new ArrayList();
-				file.nextLine();
 				while (file.hasNext()) {
-					line = file.nextLine();
-					String[] words = line.split(",");
-					
-					brand_name.add(words[0]);
-					average_price.add(Double.parseDouble(words[2]));
-					sale_num.add(Integer.parseInt(words[3]));
-					comment_pencentage.add(Double.parseDouble(words[5]));
+					String[] line;
+					lines = file.nextLine();
+					line = lines.split(";");
+					for (int i = 0; i < line.length; i++) {
+						String[] words = line[i].split(",");
+						item_count++;
+						if(item_count==1)
+							continue;//跳过第一行的汉字描述部分。
+						brand_name.add(words[0]);
+						average_price.add(Double.parseDouble(words[2]));
+						sale_num.add(Integer.parseInt(words[3]));
+						comment_pencentage.add(Double.parseDouble(words[5]));
+					}
 				}
 				request.setAttribute("brand_name", brand_name);
 				request.setAttribute("average_price", average_price);
 				request.setAttribute("sale_num", sale_num);
 				request.setAttribute("comment_pencentage", comment_pencentage);
 				request.getRequestDispatcher("statistics_base_brand_combo.jsp").forward(
+						request, response);
+			}else if(type.equals("price_range")){
+				String path = request.getRealPath("\\data\\statistics_base_price.txt");
+				file = new Scanner(new File(path));
+				ArrayList<String> range_name      = new ArrayList();
+				ArrayList<Integer> range_sale_num = new ArrayList();
+				String[][] brand_name      = new String[50][50];
+				double[][] brand_share     = new double[50][50];
+				double list_num =0;
+				double brand_num=0;
+				int row_num = 0;
+				while (file.hasNext()) {
+					String[] line;
+					lines = file.nextLine();
+					line = lines.split(";");
+					for (int i = 0; i < line.length; i++,row_num++) {
+						String[] words = line[i].split(",");
+						item_count++;
+						if(item_count==1)
+							continue;//跳过第一行的汉字描述部分。
+						range_name.add(words[0]);
+						range_sale_num.add(Integer.parseInt(words[1]));
+						for(int j=2,count=0;j<words.length;j+=2,count++){
+							brand_name[row_num][count]  = words[j];
+							brand_share[row_num][count] = Double.parseDouble(words[j+1]);
+							brand_num++;//品牌数，会重复行数的倍数
+						}
+						list_num++;//行数
+					}
+				}
+				request.setAttribute("brand_num", (int)(brand_num/list_num));
+				request.setAttribute("list_num", (int)list_num);
+				request.setAttribute("range_name", range_name);
+				request.setAttribute("range_sale_num", range_sale_num);
+				request.setAttribute("brand_name", brand_name);
+				request.setAttribute("brand_share", brand_share);
+				request.getRequestDispatcher("price_range.jsp").forward(
 						request, response);
 			}else if(type.equals("size_analysis_combo")){
 				String path = request.getRealPath("\\data\\statistics_base_size.txt");
@@ -106,15 +152,21 @@ public class ReadData extends HttpServlet {
 				ArrayList<Integer> sale_num = new ArrayList();
 				ArrayList<Integer> type_num = new ArrayList();
 				ArrayList<Double> average_price = new ArrayList();
-				file.nextLine();
+				
 				while (file.hasNext()) {
-					line = file.nextLine();
-					String[] words = line.split(",");
-					
-					size_name.add(words[0]);
-					type_num.add(Integer.parseInt(words[1]));
-					sale_num.add(Integer.parseInt(words[2]));
-					average_price.add(Double.parseDouble(words[4]));
+					String[] line;
+					lines = file.nextLine();
+					line = lines.split(";");
+					for (int i = 0; i < line.length; i++) {
+						String[] words = line[i].split(",");
+						item_count++;
+						if(item_count==1)
+							continue;//跳过第一行的汉字描述部分。
+						size_name.add(words[0]);
+						type_num.add(Integer.parseInt(words[1]));
+						sale_num.add(Integer.parseInt(words[2]));
+						average_price.add(Double.parseDouble(words[4]));
+					}
 				}
 				request.setAttribute("size_name", size_name);
 				request.setAttribute("type_num", type_num);

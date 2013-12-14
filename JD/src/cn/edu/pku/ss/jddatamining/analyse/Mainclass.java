@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import cn.edu.pku.ss.jddatamining.util.GlobalData;
+
 public class Mainclass 
 {
 	static WordSegment wseg=new WordSegment();
@@ -14,9 +16,10 @@ public class Mainclass
 	static HashMap<String, Analysis_base_brand> hms;
 	static Analysis_base_price []Anaprice=new Analysis_base_price[6];
 	static Analysis_base_CPU[] AnaCPU=new Analysis_base_CPU[7];
-	public static void main(String[] args) throws SQLException, IOException 
+	public static void main(String[] args) throws SQLException, IOException
 	{
 		analyse();
+		
 	}
 	public static void analyse() throws SQLException, IOException 
 	{
@@ -106,8 +109,8 @@ static void PrintResultBaseSize() throws IOException
 {
 	Iterator iter = hms.entrySet().iterator();
 	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
-	FileWriter writer=new FileWriter("D:/result/statistics_base_Size.txt");
-	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格\n";
+	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_Size.txt");
+	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格;\n";
      while(iter.hasNext())
      {
     	 	DecimalFormat df = new DecimalFormat("#.###");    
@@ -124,7 +127,7 @@ static void PrintResultBaseSize() throws IOException
             System.out.print(result+"%\t");
             strPrint+=result+"%,";
             System.out.print((float)info_print.price/info_print.modelamount+"\n");
-            strPrint+=(float)info_print.price/info_print.modelamount+"\n";
+            strPrint+=(float)info_print.price/info_print.modelamount+";\n";
      }
      
      try {
@@ -204,8 +207,8 @@ static void AnalysisBaseCPU(Analysis_base_brand aninfo,ComputerInfo computer)
 static void PrintResultBaseCPU() throws IOException
 {	
 	System.out.println("CPU型号\t型号数量\t销量\t平均售价");
-	FileWriter writer=new FileWriter("D:/result/statistics_base_CPU.txt");
-	String strPrint="CPU型号,型号数量,销量,平均售价";
+	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_CPU.txt");
+	String strPrint="CPU型号,型号数量,销量,平均售价;\n";
 	for(int i=0;i<7;i++)
 	{
 		System.out.print(AnaCPU[i].xinghao+"\t");
@@ -216,7 +219,7 @@ static void PrintResultBaseCPU() throws IOException
 		strPrint+=AnaCPU[i].sellamount+",";
 		float aveprice=AnaCPU[i].price/AnaCPU[i].modelamount;
 		System.out.println(aveprice+"");
-		strPrint+=aveprice+"";
+		strPrint+=aveprice+";\n";
 	}
   try {
          writer.write(strPrint);
@@ -365,9 +368,9 @@ static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
 static void PrintResultBasePrice() throws IOException
 {	
 	System.out.println("价格区间\t销量\t品牌分布");
-	FileWriter writer=new FileWriter("D:/result/statistics_base_price.txt");
+	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_price.txt");
 	String strPrint=new String();
-	strPrint="价格区间,销量,品牌分布\n";
+	strPrint="价格区间,销量,品牌分布;\n";
 	for(int i=0;i<6;i++)
 	{
 		System.out.print(Anaprice[i].qujian);
@@ -388,7 +391,7 @@ static void PrintResultBasePrice() throws IOException
 	            strPrint+=df.format(((float)info_print.sellamount/Anaprice[i].sellamount))+",";
 	            System.out.print("\t");
 		}
-		 strPrint+="\n";
+		 strPrint+=";\n";
 		 System.out.println("");
 	}
 	
@@ -441,8 +444,8 @@ static void PrintResultBaseBrand() throws IOException
 {
 	Iterator iter = ht.entrySet().iterator();
 	System.out.println("品牌\t型号数量\t平均价格\t销量\t销量百分比\t好评度\t");
-	FileWriter writer=new FileWriter("D:/result/statistics_base_brand.txt");
-	String strPrint="品牌,型号数量,平均价格,销量,销量百分比,好评度\n";
+	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_brand.txt");
+	String strPrint="品牌,型号数量,平均价格,销量,销量百分比,好评度;\n";
      while(iter.hasNext())
      {
             Map.Entry entry = (Map.Entry)iter.next();
@@ -469,10 +472,10 @@ static void PrintResultBaseBrand() throws IOException
             System.out.print(((float)info_print.good/info_print.sellamount));
             strPrint+=df.format((float)info_print.good/info_print.sellamount)+"";
             System.out.print("\n");
-            strPrint+="\n";
+            strPrint+=";\n";
             
-            FileWriter writer2=new FileWriter("D:/result/keywords_base_brand.txt");
-        	String strPrint2="品牌,型号数量,平均价格,销量,销量百分比,好评度\n";
+            FileWriter writer2=new FileWriter(GlobalData.ProjacePath+"\\"+"keywords_base_brand.txt");
+        	String strPrint2="品牌,型号数量,平均价格,销量,销量百分比,好评度;\n";
 //          wseg.arg2=info_print.comment;
 //          if(wseg.arg2.length()>10000) wseg.arg2=wseg.arg2.substring(0, 10000);
 //     	 	String srtResult=wseg.ExecuteWordSegmentation();

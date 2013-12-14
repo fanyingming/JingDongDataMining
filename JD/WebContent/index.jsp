@@ -53,11 +53,11 @@
                     <li><a href="analysis_item_2.jsp">Sales Percent Chart</a></li>
                     <li><a href="ReadData?type=cpu_analysis_combo">CPU Analysis Chart</a></li>
                     <li><a href="ReadData?type=size_analysis_combo">Size Analysis Chart</a></li>
-                    <li><a href="analysis_item_3.jsp">Different Price Range Sales Percent</a></li>
+                    <li><a href="ReadData?type=price_range">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
                 <li><a href="#about">About</a></li>
-                <li><a href="ReadData">test</a></li>
+                <li><a href="Analyse">analyse</a></li>
               </ul>
             </div>
           </div>

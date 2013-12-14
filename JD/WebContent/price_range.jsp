@@ -1,3 +1,4 @@
+<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,12 +26,47 @@
 
         <script type="text/javascript">
 $(function () {
+	<%
+	ArrayList<String> range_name      = new ArrayList();
+	ArrayList<Integer> range_sale_num = new ArrayList();
+	String[][] brand_name      = new String[50][50];
+	double[][] brand_share     = new double[50][50];
+	int list_num =0;
+	int brand_num=0;
+	if(request.getAttribute("cpu_type")!=null){
+		list_num       = (Integer)request.getAttribute("list_num");
+		brand_num      = (Integer)request.getAttribute("brand_num");
+		range_name     = (ArrayList<String>)request.getAttribute("range_name");
+		range_sale_num = (ArrayList<Integer>)request.getAttribute("range_sale_num");
+		brand_name     = (String[][])request.getAttribute("brand_name");
+		brand_share = (double[][])request.getAttribute("brand_share");
+	}
+	%>
+	<!--
         var array1 = [1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.3];
         var array2 = [1.7, 1.67, 3.2, 2.13, 0, 17.9, 0, 5.1, 1, 7.6, 1.66, 4.92, 0, 8.9, 11.2, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 0.2];
         var array3 = [0, 17.9, 0, 5.1, 1, 7.6, 0, 5.7, 10.1, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 4.92, 0, 8.9, 11.2, 5];
         var array4 = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1.67, 3.2, 2.13, 1.66, 5.1, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 8.9, 11.2, 4];
         var array5 = [0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 3];
         var array6 = [10.1, 4.92, 0, 1.67, 3.2, 2.13, 1.66, 5.1, 8.9, 11.2, 0, 17.9, 0, 0.2, 4, 0.5, 0, 1.7, 1, 7.6, 0, 5.7, 2];
+      -->
+        <% 	
+    	for( int i=0;i<list_num;i++)
+    	{
+    		%>var array<%=i+1%> =[
+    		                      <%
+    		                      	for(int j=0;j<brand_num;j++){
+    		                      		double number = brand_share[i][j];
+    		                      		%><%=number%>
+    		                      				<%if(j+1<brand_num)
+    		                            		{
+    		                            			%>,<%
+    		                            		}	
+    		                      	}
+    		                      %>
+    		                      ];<%
+    	}
+    %>
         $('#container').highcharts({
             title: {
                 text: 'Different Price Range Sales Percent',
@@ -41,10 +77,24 @@ $(function () {
                 x: -20
             },
             xAxis: {
-                categories: ['三星', '海尔', 'Thinkpad', '东芝', '联想', 'Dell',
-                    '苹果', '宏基', '富士通', '未来人类', 'Asus/华硕', '外星人', 
-                    '清华同方', 'Gateway', '惠普', '雷蛇', '神舟', '七喜', 
-                    '优派', '其他', '微星', '索尼', '技嘉']
+            	
+                categories: ['ä¸æ', 'æµ·å°', 'Thinkpad', 'ä¸è', 'èæ³', 'Dell',
+                    'è¹æ', 'å®åº', 'å¯å£«é', 'æªæ¥äººç±»', 'Asus/åç¡', 'å¤æäºº', 
+                    'æ¸ååæ¹', 'Gateway', 'æ æ®', 'é·è', 'ç¥è', 'ä¸å', 
+                    'ä¼æ´¾', 'å¶ä»', 'å¾®æ', 'ç´¢å°¼', 'æå']
+            <!--
+            	categories: [<% 
+            	for( int i=0;i<brand_num;i++)
+            	{
+            		String display = brand_name[0][i];
+            		%>'<%=display %>'
+            		<%if(i+1<brand_num)
+            		{
+            			%>,<%
+            		}
+            	}
+            %>]
+                -->
             },
             yAxis: {
                 title: {
@@ -65,8 +115,9 @@ $(function () {
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
+          
             series: [{
-                name: '3000以下',
+                name: '3000ä»¥ä¸',
                 data: [array1[0], array1[1], array1[2], array1[3], array1[4], array1[5], array1[6], array1[7], array1[8], array1[9], array1[10], array1[11], array1[12], array1[13], array1[14], array1[15], array1[16], array1[17], array1[18], array1[19], array1[20], array1[21], array1[22]]
             }, {
                 name: '3000-5000',
@@ -81,9 +132,35 @@ $(function () {
                 name: '15000-30000',
                 data: [array5[0], array5[1], array5[2], array5[3], array5[4], array5[5], array5[6], array5[7], array5[8], array5[9], array5[10], array5[11], array5[12], array5[13], array5[14], array5[15], array5[16], array5[17], array5[18], array5[19], array5[20], array5[21], array5[22]]
             }, {
-                name: '30000以上',
+                name: '30000ä»¥ä¸',
                 data: [array6[0], array6[1], array6[2], array6[3], array6[4], array6[5], array6[6], array6[7], array6[8], array6[9], array6[10], array6[11], array6[12], array6[13], array6[14], array6[15], array6[16], array6[17], array6[18], array6[19], array6[20], array6[21], array6[22]]
             }]
+            <!--
+            series: [<% 	
+                 	for( int i=0;i<list_num;i++)
+                	{
+                		%>
+                		{
+                			name: '<%=range_name.get(i)%>',
+                			data: [<%
+    		                      	for(int j=0;j<brand_num;j++){
+    		                      		%>array<%=i+1%>[<%=j%>]
+    		                      				<%if(j+1<brand_num)
+    		                            		{
+    		                            			%>,<%
+    		                            		}	
+    		                      	}
+    		                      %>]}
+                		<%
+                			if(i+1<list_num)
+                			{
+                				%>,<%
+                			}
+                		%>
+                		<%
+                	}
+                %>]
+            -->
         });
     });
 

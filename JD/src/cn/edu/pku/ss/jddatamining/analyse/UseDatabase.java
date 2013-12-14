@@ -1,6 +1,6 @@
 package cn.edu.pku.ss.jddatamining.analyse;
 
-import cn.edu.pku.ss.jddatamining.util.GlobalData;;
+import cn.edu.pku.ss.jddatamining.util.GlobalData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
