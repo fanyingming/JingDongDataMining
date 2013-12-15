@@ -81,7 +81,7 @@ $(function () {
                 text: 'All Brands Computer Sales Analysis Chart'
             },
             subtitle: {
-                text: 'Source: Jingdong.com'
+                text: 'Source: jd.com'
             },
             xAxis: [{
                 categories: [<% 	num = brand_name.size();
@@ -99,7 +99,7 @@ $(function () {
             yAxis: [{ // Primary yAxis
                 labels: {
                     formatter: function() {
-                        return 'ï¿¥'+ this.value;
+                        return '¥'+ this.value;
                     },
                     style: {
                         color: '#89A54E'
@@ -123,7 +123,7 @@ $(function () {
                 },
                 labels: {
                     formatter: function() {
-                        return this.value +' å°';
+                        return this.value +'件';
                     },
                     style: {
                         color: '#4572A7'
