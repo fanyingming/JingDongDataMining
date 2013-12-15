@@ -169,7 +169,7 @@ $(function () {
             },
             labels: {
                 items: [{
-                    html: 'Different Types of CPU Comparision',
+                    html: 'Types of Different Size Comparision',
                     style: {
                         left: '40px',
                         top: '8px',
@@ -297,9 +297,10 @@ $(function () {
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, visitor!</h1>
+    <!--     <h1>Hello, visitor!</h1>-->
         <p>Here are the analysis result of computer sales in JD.com.</p>
-        <p>Thanks for <a class="btn btn-primary" role="button" href="http://www.highcharts.com/">Highcharts</a></p>
+   <!--      <p>Thanks for <a class="btn btn-primary" role="button" href="http://www.highcharts.com/">Highcharts</a></p>
+      -->
       </div>
     </div>
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

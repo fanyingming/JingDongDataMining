@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -40,13 +40,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.jsp">Sales Analysis</a>
+              <a class="navbar-brand" href="index.jsp">JD Notebook Analysis</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="crawl">crawl</a></li>
-                <li><a href="Analyse">mining</a></li>
+                <li><a href="crawl">Crawl</a></li>
+                <li><a href="Analyse">Mining</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -58,7 +58,7 @@
                     <li><a href="ReadData?type=price_range">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
-                <li><a href="about.jsp">About</a></li>
+                <li><a href="about.jsp">About Us</a></li>
               </ul>
             </div>
           </div>
@@ -102,7 +102,7 @@
             <div class="carousel-caption">
               <h1  class="pull-left" style="position:relative;bottom:80px;">Let's begin</h1>
               <p  class="pull-left" style="position:relative;bottom:40px;">If you want to buy or sell something, sales analysis system is a good helper!</p>
-              <p  class="pull-left" style="position:relative;bottom:10px;"><a class="btn btn-lg btn-primary" href="statistics_base_brand_combo.jsp" role="button">Use it now</a></p>
+              <p  class="pull-left" style="position:relative;bottom:10px;"><a class="btn btn-lg btn-primary" href="ReadData?type=statistics_base_brand_combo" role="button">Use it now</a></p>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <h1 style="color:#000000;text-align:center;font-size:60px">Welcome To Our Pages!</h1>
+        <h1 style="color:#000000;text-align:center;font-size:60px">Welcome To JD Notebook Analysis!</h1>
       </div><!-- /.row -->
 
       <hr class="featurette-divider">

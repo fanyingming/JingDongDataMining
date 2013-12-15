@@ -100,7 +100,7 @@ public class ReadData extends HttpServlet {
 						average_price.add(Double.parseDouble(words[2]));
 						sale_num.add(Integer.parseInt(words[3]));
 						sale_share.add(Double.parseDouble(words[4]));
-						comment_pencentage.add(Double.parseDouble(words[5]));
+						comment_pencentage.add(Double.parseDouble(words[5])*100);
 					}
 				}
 				request.setAttribute("brand_name", brand_name);
@@ -139,7 +139,7 @@ public class ReadData extends HttpServlet {
 						range_sale_num.add(Integer.parseInt(words[1]));
 						for(int j=2,count=0;j<words.length;j+=2,count++){
 							brand_name[list_num][count]  = words[j];
-							brand_share[list_num][count] = Double.parseDouble(words[j+1]);
+							brand_share[list_num][count] = Double.parseDouble(words[j+1])*100;
 							brand_num++;//品牌数，会重复行数的倍数
 						}
 						list_num++;//行数
