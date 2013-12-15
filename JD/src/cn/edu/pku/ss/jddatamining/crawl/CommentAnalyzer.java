@@ -1,4 +1,4 @@
-package cn.edu.pku.ss;
+package cn.edu.pku.ss.jddatamining.crawl;
 
 import java.io.IOException;
 import java.sql.Connection;

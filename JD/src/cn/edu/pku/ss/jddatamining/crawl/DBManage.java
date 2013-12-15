@@ -1,15 +1,15 @@
-package cn.edu.pku.ss;
+package cn.edu.pku.ss.jddatamining.crawl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import cn.edu.pku.ss.jddatamining.util.GlobalData;
 public class DBManage {
-	private String host = "localhost";
-	private String user = "root";
-	private String pwd = "root";
-	private String schema = "jdcrawler";
+	private String host = GlobalData.DBHost;
+	private String user = GlobalData.DBUserName;
+	private String pwd = GlobalData.DBPassword;
+	private String schema = GlobalData.DBName;
 	
 	public DBManage(){
 	}
