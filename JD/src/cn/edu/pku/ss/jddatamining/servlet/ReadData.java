@@ -185,6 +185,10 @@ public class ReadData extends HttpServlet {
 				request.setAttribute("average_price", average_price);
 				request.getRequestDispatcher("size_analysis_combo.jsp").forward(
 						request, response);
+			}else if(type.equals("comment_analyse")){
+				
+				request.getRequestDispatcher("analysis_item_1.jsp").forward(
+						request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

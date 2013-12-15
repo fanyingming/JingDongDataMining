@@ -155,25 +155,25 @@ $(function () {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.jsp">Sales Analysis</a>
+              <a class="navbar-brand" href="index.jsp">JD Notebook Analysis</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                 <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="crawl">crawl</a></li>
-                <li><a href="Analyse">mining</a></li>
+                <li class="active"><a href="index.jsp">Home</a></li>
+                <li><a href="crawl">Crawl</a></li>
+                <li><a href="Analyse">Mining</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="ReadData?type=statistics_base_brand_combo">All Brands Computer Sales Analysis Chart</a></li>
-                    <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
+                    <li><a href="ReadData?type=comment_analyse">All Brands Computer Comments Analysis Chart</a></li>
                     <li><a href="ReadData?type=sale_share">Sales Percent Chart</a></li>
                     <li><a href="ReadData?type=cpu_analysis_combo">CPU Analysis Chart</a></li>
                     <li><a href="ReadData?type=size_analysis_combo">Size Analysis Chart</a></li>
                     <li><a href="ReadData?type=price_range">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
-                <li><a href="#about">About</a></li>
+                <li><a href="about.jsp">About Us</a></li>
               </ul>
             </div>
           </div>
@@ -219,7 +219,7 @@ $(function () {
 
       <footer>
         <p class="pull-right" style="position:relative;right:30px"><a class="btn btn-lg btn-primary" href="#" role="button" title="back to top">B</a></p>
-        <p style="color:#333333;text-align:center;">&copy; 2013-2014 The 4th Group of Java Class</p>
+        <p style="color:#333333;text-align:center;">&copy; The 4th Group of Java Class, School of Software & Microelectronics, Peking University.</p>
       </footer>
     </div> <!-- /container -->
 

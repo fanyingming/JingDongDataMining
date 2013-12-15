@@ -51,7 +51,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="ReadData?type=statistics_base_brand_combo">All Brands Computer Sales Analysis Chart</a></li>
-                    <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
+                    <li><a href="ReadData?type=comment_analyse">All Brands Computer Comments Analysis Chart</a></li>
                     <li><a href="ReadData?type=sale_share">Sales Percent Chart</a></li>
                     <li><a href="ReadData?type=cpu_analysis_combo">CPU Analysis Chart</a></li>
                     <li><a href="ReadData?type=size_analysis_combo">Size Analysis Chart</a></li>
@@ -129,7 +129,7 @@
       <!-- FOOTER -->
       <footer>
         <p class="pull-right" style="position:relative;right:30px"><a class="btn btn-lg btn-primary" href="#" role="button" title="back to top">B</a></p>
-        <p style="color:#333333;text-align:center;">&copy; 2013-2014 The 4th Group of Java Class</p>
+        <p style="color:#333333;text-align:center;">&copy; The 4th Group of Java Class, School of Software & Microelectronics, Peking University.</p>
       </footer>
 
     </div><!-- /.container -->
