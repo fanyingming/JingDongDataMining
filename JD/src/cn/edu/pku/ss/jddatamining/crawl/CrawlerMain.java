@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 public class CrawlerMain {
-	public static void main(String[] args) throws IOException {
+	public static void Crawl() throws IOException
+	{
 		DBManage dbManager = new DBManage();
 		String srcUrl = "http://m.jd.com/products/670-671-672.html";
 		dbManager.initDB(srcUrl);//初始化数据库经理
@@ -20,6 +21,9 @@ public class CrawlerMain {
 		//线程4：分析商品的详细信息
 		DetailAnalyzer detailAnalyzer = new DetailAnalyzer(dbManager);
 		detailAnalyzer.start();
+	}
+	public static void main(String[] args) throws IOException {
+		Crawl();
 	}
 }
 //utils:MD5

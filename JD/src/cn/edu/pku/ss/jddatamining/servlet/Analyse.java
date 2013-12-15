@@ -42,6 +42,8 @@ public class Analyse extends HttpServlet {
 			String path = request.getRealPath("\\data");
 			GlobalData.ProjacePath = path;
 			Mainclass.analyse();
+			String display_content = "Data mining complete!";
+			request.setAttribute("display_content", display_content);
 			request.getRequestDispatcher("success.jsp").forward(request,
 					response);
 		} catch (SQLException e) {

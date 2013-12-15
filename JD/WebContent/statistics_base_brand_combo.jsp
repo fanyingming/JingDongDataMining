@@ -38,6 +38,11 @@ $(function () {
 		sale_num           = (ArrayList<Integer>)request.getAttribute("sale_num");
 		average_price      = (ArrayList<Double>)request.getAttribute("average_price");
 		comment_pencentage = (ArrayList<Double>)request.getAttribute("comment_pencentage");
+	}else{
+		String error_contant="Can't get the information to display.";
+		request.setAttribute("error_contant", error_contant);
+		request.getRequestDispatcher("error.jsp").forward(
+				request, response);
 	}
 	%>
         var price = [<% 	num = brand_name.size();

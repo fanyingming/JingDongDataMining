@@ -189,10 +189,18 @@ public class ReadData extends HttpServlet {
 				
 				request.getRequestDispatcher("analysis_item_1.jsp").forward(
 						request, response);
+			}else{
+					String error_contant="Your input type is not correct.";
+					request.setAttribute("error_contant", error_contant);
+					request.getRequestDispatcher("error.jsp").forward(
+							request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+			String error_contant="The format of the data may not correct, please check your input format again.";
+			request.setAttribute("error_contant", error_contant);
+			request.getRequestDispatcher("error.jsp").forward(
+					request, response);
 		}finally{
 			
 		}

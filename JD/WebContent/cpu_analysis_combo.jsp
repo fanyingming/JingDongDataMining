@@ -37,6 +37,11 @@ $(function () {
 		cpu_num       = (ArrayList<Integer>)request.getAttribute("cpu_num");
 		sale_num      = (ArrayList<Integer>)request.getAttribute("sale_num");
 		average_price = (ArrayList<Double>)request.getAttribute("average_price");
+	}else{
+		String error_contant="Can't get the information to display.";
+		request.setAttribute("error_contant", error_contant);
+		request.getRequestDispatcher("error.jsp").forward(
+				request, response);
 	}
 	%>
         var type = [<% 	num = cpu_type.size();

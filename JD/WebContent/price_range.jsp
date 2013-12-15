@@ -40,6 +40,11 @@ $(function () {
 		range_sale_num = (ArrayList<Integer>)request.getAttribute("range_sale_num");
 		brand_name     = (String[][])request.getAttribute("brand_name");
 		brand_share = (double[][])request.getAttribute("brand_share");
+	}else{
+		String error_contant="Can't get the information to display.";
+		request.setAttribute("error_contant", error_contant);
+		request.getRequestDispatcher("error.jsp").forward(
+				request, response);
 	}
 	%>
 	

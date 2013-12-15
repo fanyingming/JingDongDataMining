@@ -1,5 +1,4 @@
-﻿<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
-
+<%@ page language="java" import="cn.edu.pku.ss.jddatamining.servlet.*,java.util.ArrayList" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Analysis_Item_1</title>
+    <title>Error</title>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
@@ -24,95 +23,13 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
     <script src="js/highcharts.js"></script>
     <script src="js/exporting.js"></script>
-
-        <script type="text/javascript">
-$(function () {
-	<%
-	int num;
-	ArrayList<String> brand_name = new ArrayList();
-	ArrayList<Double> sale_share = new ArrayList();
-	if(request.getAttribute("brand_name")!=null){
-		brand_name = (ArrayList<String>)request.getAttribute("brand_name");
-		sale_share = (ArrayList<Double>)request.getAttribute("sale_share");
-	}else{
-		String error_contant="Can't get the information to display.";
-		request.setAttribute("error_contant", error_contant);
-		request.getRequestDispatcher("error.jsp").forward(
-				request, response);
+<%
+    String error_contant="";
+	if(request.getAttribute("error_contant")!=null){
+		error_contant = (String)request.getAttribute("error_contant");
 	}
 	%>
-    var arraypercent = [<% 	num = brand_name.size();
-	for( int i=0;i<num;i++)
-	{
-		double display = sale_share.get(i);
-		%><%=display %>
-		<%if(i+1<num)
-		{
-			%>,<%
-		}
-	}
-%>];
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Computer market shares at JD.com, 2013'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    color: '#000000',
-                    connectorColor: '#000000',
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Computer share',
-            data: [
-                <% 	num = brand_name.size();
-            	for( int i=0;i<num;i++)
-            	{
-            		String display = brand_name.get(i);
-            		if(i==2){
-            			%>
-            			 {
-                             name: '<%=brand_name.get(2)%>',
-                             y: arraypercent[2],
-                             sliced: true,
-                             selected: true
-                         },
-
-            			<%
-            		}
-            		else{
-            			%>['<%=display %>', arraypercent[<%=i%>]]
-                        		<%if(i+1<num)
-                        		{
-                        			%>,<%
-                        		}
-            		}
-            		
-            	}
-            %>
-            
-
-            ]
-        }]
-    });
-});
-
-    </script>
+   
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -170,10 +87,8 @@ $(function () {
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-    <!--     <h1>Hello, visitor!</h1>-->
-        <p>Here are the analysis result of computer sales in JD.com.</p>
-    <!--     <p>Thanks for <a class="btn btn-primary" role="button" href="http://www.highcharts.com/">Highcharts</a></p>
-      -->
+		<h2 align="center">We are so sorry about the error.</h2>      
+		<h2 align="center"><%=error_contant %></h2>
       </div>
     </div>
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -203,7 +118,7 @@ $(function () {
 
       <footer>
         <p class="pull-right" style="position:relative;right:30px"><a class="btn btn-lg btn-primary" href="#" role="button" title="back to top">B</a></p>
-        <p style="color:#333333;text-align:center;">&copy; The 4th Group of Java Class, School of Software & Microelectronics, Peking University.</p>
+       <p style="color:#333333;text-align:center;">&copy; The 4th Group of Java Class, School of Software & Microelectronics, Peking University.</p>
       </footer>
     </div> <!-- /container -->
 

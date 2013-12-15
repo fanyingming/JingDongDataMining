@@ -32,11 +32,16 @@ $(function () {
 	ArrayList<Integer> sale_num = new ArrayList();
 	ArrayList<Integer> type_num = new ArrayList();
 	ArrayList<Double> average_price = new ArrayList();
-	if(request.getAttribute("size_name")!=null){
+	if(request.getAttribute("size_name")!=null ){
 		size_name      = (ArrayList<String>)request.getAttribute("size_name");
 		sale_num       = (ArrayList<Integer>)request.getAttribute("sale_num");
 		type_num       = (ArrayList<Integer>)request.getAttribute("type_num");
 		average_price  = (ArrayList<Double>)request.getAttribute("average_price");
+	}else{
+		String error_contant="Can't get the information to display.";
+		request.setAttribute("error_contant", error_contant);
+		request.getRequestDispatcher("error.jsp").forward(
+				request, response);
 	}
 	%>
         var type = [<% 	num = size_name.size();
