@@ -43,7 +43,7 @@ public class DBManage {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://" + this.host + ":3306/?autoReconnect=true&UseUnicode=true&"
-							+ "characterEncoding=utf8", "root", "root");
+							+ "characterEncoding=utf8", this.user, this.pwd);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
