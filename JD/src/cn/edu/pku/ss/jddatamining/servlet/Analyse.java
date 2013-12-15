@@ -40,7 +40,7 @@ public class Analyse extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			String path = request.getRealPath("\\data");
-			GlobalData.ProjacePath = path;
+			GlobalConfig.ProjacePath = path;
 			Mainclass.analyse();
 			String display_content = "Data mining complete!";
 			request.setAttribute("display_content", display_content);

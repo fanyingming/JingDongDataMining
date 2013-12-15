@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import cn.edu.pku.ss.jddatamining.util.GlobalData;
+import cn.edu.pku.ss.jddatamining.util.GlobalConfig;
+
 public class DBManage {
-	private String host = GlobalData.DBHost;
-	private String user = GlobalData.DBUserName;
-	private String pwd = GlobalData.DBPassword;
-	private String schema = GlobalData.DBName;
+	private String host = GlobalConfig.DBHost;
+	private String user = GlobalConfig.DBUserName;
+	private String pwd = GlobalConfig.DBPassword;
+	private String schema = GlobalConfig.DBName;
 	
 	public DBManage(){
 	}

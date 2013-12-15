@@ -1,6 +1,6 @@
 package cn.edu.pku.ss.jddatamining.analyse;
 
-import cn.edu.pku.ss.jddatamining.util.GlobalData;
+import cn.edu.pku.ss.jddatamining.util.GlobalConfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UseDatabase {
-	 String user = GlobalData.DBUserName;
-	 String password = GlobalData.DBPassword;
+	 String user = GlobalConfig.DBUserName;
+	 String password = GlobalConfig.DBPassword;
 	 String url = "jdbc:mysql://localhost:3306/jdcrawler";
 	 String driver = "com.mysql.jdbc.Driver";
 	 String tableName = "items";

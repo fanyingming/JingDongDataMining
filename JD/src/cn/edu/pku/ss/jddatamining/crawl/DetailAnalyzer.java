@@ -13,12 +13,21 @@ import org.jsoup.select.Elements;
 
 public class DetailAnalyzer extends Thread{
 	private DBManage dbManager;
+	private static long lastTime;
+	private static long currentTime;
+	private long timeThres = 1000;
+	
 	public DetailAnalyzer(DBManage dbmanager){
 		this.dbManager = dbmanager;
 	}
 	public void run() {
 		Connection conn = dbManager.getConnection();
+		lastTime = System.currentTimeMillis();
+		currentTime = System.currentTimeMillis();
 		while (true) {
+			currentTime = System.currentTimeMillis();
+			if(currentTime - lastTime > timeThres )
+				break;
 			// get detail url
 			String detailUrl = getDetailUrl(conn);
 			if(detailUrl == "")

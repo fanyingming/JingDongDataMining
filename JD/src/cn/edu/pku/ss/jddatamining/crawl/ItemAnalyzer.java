@@ -5,18 +5,28 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class ItemAnalyzer extends Thread{
 	private DBManage dbManager;
+	private static long lastTime;
+	private static long currentTime;
+	private long timeThres = 1000;
+	
 	public ItemAnalyzer(DBManage dbManger){
 		this.dbManager = dbManger;
 	}
 	// 从数据库中取出未经过分析的网页进行分析，提取其中的价格、评论等信息
 	public void run() {
 		Connection conn = dbManager.initTable_items();// init db
+		lastTime = System.currentTimeMillis();
+		currentTime = System.currentTimeMillis();
 		while (true) {
+			currentTime = System.currentTimeMillis();
+			if(currentTime - lastTime > timeThres )
+				break;
 			String itemUrl = getItemUrl(conn);
 			String itemUrlMD5 = EncryptionByMD5.getMD5(itemUrl);
 			if(itemUrl.equals(""))

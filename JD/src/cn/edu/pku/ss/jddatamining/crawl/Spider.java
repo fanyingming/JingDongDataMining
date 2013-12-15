@@ -17,7 +17,10 @@ import org.jsoup.select.Elements;
 public class Spider extends Thread {
 	private String srcURL;
 	private DBManage dbManager;
-
+	private static long lastTime;
+	private static long currentTime;
+	private long timeThres = 3000;
+	
 	public Spider(String srcUrl, DBManage dbManager) {
 		this.srcURL = srcUrl;
 		this.dbManager = dbManager;
@@ -25,7 +28,12 @@ public class Spider extends Thread {
 
 	public void run() {
 		Connection conn = dbManager.initTable_urls(this.srcURL);
+		lastTime = System.currentTimeMillis();
+		currentTime = System.currentTimeMillis();
 		while (true) {
+			currentTime = System.currentTimeMillis();
+			if(currentTime - lastTime > timeThres )
+				break;
 			try {
 				Thread.sleep(50);
 				String url = getSrcUrl(conn);

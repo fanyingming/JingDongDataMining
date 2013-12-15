@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import cn.edu.pku.ss.jddatamining.util.GlobalData;
+import cn.edu.pku.ss.jddatamining.util.GlobalConfig;
 
 public class Mainclass 
 {
@@ -109,7 +109,7 @@ static void PrintResultBaseSize() throws IOException
 {
 	Iterator iter = hms.entrySet().iterator();
 	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
-	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_Size.txt");
+	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_Size.txt");
 	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格;\n";
      while(iter.hasNext())
      {
@@ -207,7 +207,7 @@ static void AnalysisBaseCPU(Analysis_base_brand aninfo,ComputerInfo computer)
 static void PrintResultBaseCPU() throws IOException
 {	
 	System.out.println("CPU型号\t型号数量\t销量\t平均售价");
-	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_CPU.txt");
+	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_CPU.txt");
 	String strPrint="CPU型号,型号数量,销量,平均售价;\n";
 	for(int i=0;i<7;i++)
 	{
@@ -368,7 +368,7 @@ static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
 static void PrintResultBasePrice() throws IOException
 {	
 	System.out.println("价格区间\t销量\t品牌分布");
-	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_price.txt");
+	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_price.txt");
 	String strPrint=new String();
 	strPrint="价格区间,销量,品牌分布;\n";
 	for(int i=0;i<6;i++)
@@ -444,7 +444,7 @@ static void PrintResultBaseBrand() throws IOException
 {
 	Iterator iter = ht.entrySet().iterator();
 	System.out.println("品牌\t型号数量\t平均价格\t销量\t销量百分比\t好评度\t");
-	FileWriter writer=new FileWriter(GlobalData.ProjacePath+"\\"+"statistics_base_brand.txt");
+	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_brand.txt");
 	String strPrint="品牌,型号数量,平均价格,销量,销量百分比,好评度;\n";
      while(iter.hasNext())
      {
@@ -474,7 +474,7 @@ static void PrintResultBaseBrand() throws IOException
             System.out.print("\n");
             strPrint+=";\n";
             
-            FileWriter writer2=new FileWriter(GlobalData.ProjacePath+"\\"+"keywords_base_brand.txt");
+            FileWriter writer2=new FileWriter(GlobalConfig.ProjacePath+"\\"+"keywords_base_brand.txt");
         	String strPrint2="品牌,型号数量,平均价格,销量,销量百分比,好评度;\n";
 //          wseg.arg2=info_print.comment;
 //          if(wseg.arg2.length()>10000) wseg.arg2=wseg.arg2.substring(0, 10000);

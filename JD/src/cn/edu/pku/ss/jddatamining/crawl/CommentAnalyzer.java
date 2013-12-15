@@ -5,20 +5,30 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class CommentAnalyzer extends Thread{
 	
 	private DBManage dbManager;
+	private static long lastTime;
+	private static long currentTime;
+	private long timeThres = 1000;
+	
 	public CommentAnalyzer(DBManage dbManager){
 		this.dbManager = dbManager;
 	}
 
 	public void run() {
+		lastTime = System.currentTimeMillis();
+		currentTime = System.currentTimeMillis();
 		// getDetaiUrl();
 		Connection conn = dbManager.getConnection();
 		while (true) {
+			currentTime = System.currentTimeMillis();
+			if(currentTime - lastTime > timeThres )
+				break;
 			String CommentNumSel = "div.content>div>a>font[color=orange]";
 			String commentContenSel = "div.content>div.eval>div.u-summ";
 			String commentUrl = getCommentUrl(conn);
