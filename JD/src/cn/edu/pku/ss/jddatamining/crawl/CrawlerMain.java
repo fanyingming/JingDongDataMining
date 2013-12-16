@@ -10,6 +10,7 @@ public class CrawlerMain {
 	static ItemAnalyzer itemAnalyzer = new ItemAnalyzer(dbManager);
 	static DetailAnalyzer detailAnalyzer = new DetailAnalyzer(dbManager);
 	static CommentAnalyzer commentAnalyzer = new CommentAnalyzer(dbManager);
+	
 	public static void Crawl() throws IOException
 	{
 		//DBManage dbManager = new DBManage();
@@ -20,13 +21,13 @@ public class CrawlerMain {
 		spider.start();
 		//线程2：分析商品页面的详细信息和评论信息链接
 		//ItemAnalyzer itemAnalyzer = new ItemAnalyzer(dbManager);
-		//itemAnalyzer.start();
+		itemAnalyzer.start();
 		//线程3：分析商品的评论信息
 		//CommentAnalyzer commentAnalyzer = new CommentAnalyzer(dbManager);
-		//commentAnalyzer.start();
+		commentAnalyzer.start();
 		//线程4：分析商品的详细信息
 		//DetailAnalyzer detailAnalyzer = new DetailAnalyzer(dbManager);
-		//detailAnalyzer.start();
+		detailAnalyzer.start();
 	}
 	public static void EndAllTasks() throws IOException
 	{

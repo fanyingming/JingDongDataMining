@@ -16,6 +16,7 @@ public class Mainclass
 	static HashMap<String, Analysis_base_brand> hms;
 	static Analysis_base_price []Anaprice=new Analysis_base_price[6];
 	static Analysis_base_CPU[] AnaCPU=new Analysis_base_CPU[7];
+	static Analysis_base_size []Anasize=new Analysis_base_size[9];
 	public static void main(String[] args) throws SQLException, IOException
 	{
 		analyse();
@@ -26,6 +27,7 @@ public class Mainclass
 		udb.InitDatabase();
 		for(int i=0;i<6;i++) Anaprice[i]=new Analysis_base_price();
 		for(int i=0;i<7;i++) AnaCPU[i]=new Analysis_base_CPU();
+		for(int i=0;i<9;i++) Anasize[i]=new Analysis_base_size();
 		ht=new HashMap<String, Analysis_base_brand>();
 		hms=new HashMap<String, Analysis_base_brand>();
 		while(true)	
@@ -54,7 +56,7 @@ public class Mainclass
 			computer.CPU=info[8];
 			computer.Ram=info[9];
 			computer.Harddrive=info[10];
-			if(info[12].equals("null")) computer.Size="else";
+			if(info[12].equals("null")) computer.Size="0";
 			else if(info[12].length()>=2)
 			{
 				computer.Size=info[12].substring(0, 2);
@@ -92,44 +94,152 @@ public class Mainclass
  }
 static void AnalysisBaseSize(Analysis_base_brand aninfo,ComputerInfo computer)
 {
+	int temp_size=Integer.parseInt(computer.Size);
+	switch(temp_size)
+	{
+	case 0:  
+			Anasize[0].size=0;
+			Anasize[0].price+=aninfo.price;
+			Anasize[0].modelamount+=aninfo.modelamount;
+			Anasize[0].sellamount+=aninfo.sellamount;
+			break;
+	case 10: 
+			Anasize[1].size=10;
+			Anasize[1].price+=aninfo.price;
+			Anasize[1].modelamount+=aninfo.modelamount;
+			Anasize[1].sellamount+=aninfo.sellamount;
+			break;
+	case 11: 	
+			Anasize[2].size=11;
+			Anasize[2].price+=aninfo.price;
+			Anasize[2].modelamount+=aninfo.modelamount;
+			Anasize[2].sellamount+=aninfo.sellamount;
+			break;
+	case 12: 
+			Anasize[3].size=12;	
+			Anasize[3].price+=aninfo.price;
+			Anasize[3].modelamount+=aninfo.modelamount;
+			Anasize[3].sellamount+=aninfo.sellamount;
+			break;
+	case 13: 
+			Anasize[4].size=13;	
+			Anasize[4].price+=aninfo.price;
+			Anasize[4].modelamount+=aninfo.modelamount;
+			Anasize[4].sellamount+=aninfo.sellamount;
+			break;
+	case 14: 
+			Anasize[5].size=14;	
+			Anasize[5].price+=aninfo.price;
+			Anasize[5].modelamount+=aninfo.modelamount;
+			Anasize[5].sellamount+=aninfo.sellamount;
+			break;
+	case 15:
+			Anasize[6].size=15;	
+			Anasize[6].price+=aninfo.price;
+			Anasize[6].modelamount+=aninfo.modelamount;
+			Anasize[6].sellamount+=aninfo.sellamount;
+			break;
+	case 17: 
+			Anasize[7].size=17;	
+			Anasize[7].price+=aninfo.price;
+			Anasize[7].modelamount+=aninfo.modelamount;
+			Anasize[7].sellamount+=aninfo.sellamount;
+			break;
+	case 18: 
+			Anasize[8].size=18;	
+			Anasize[8].price+=aninfo.price;
+			Anasize[8].modelamount+=aninfo.modelamount;
+			Anasize[8].sellamount+=aninfo.sellamount;
+			break;
 	
-	if(hms.containsKey(computer.Size)==false) hms.put(computer.Size, aninfo);
-	else{
-		 Analysis_base_brand temp=hms.get(computer.Size);
-		 temp.price+=aninfo.price;
-		 temp.sellamount+=aninfo.sellamount;
-		 temp.modelamount+=aninfo.modelamount;
-		 
-		 hms.remove(computer.Size);
-		 hms.put(computer.Size, temp);
 	}
+	
+	
+//	
+//	if(hms.containsKey(computer.Size)==false) hms.put(computer.Size, aninfo);
+//	else{
+//		 Analysis_base_brand temp=hms.get(computer.Size);
+//		 temp.price+=aninfo.price;
+//		 temp.sellamount+=aninfo.sellamount;
+//		 temp.modelamount+=aninfo.modelamount;
+//		 
+//		 hms.remove(computer.Size);
+//		 hms.put(computer.Size, temp);
+//	}
 	
 }
 static void PrintResultBaseSize() throws IOException
 {
-	Iterator iter = hms.entrySet().iterator();
-	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
-	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_Size.txt");
 	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格;\n";
-     while(iter.hasNext())
-     {
-    	 	DecimalFormat df = new DecimalFormat("#.###");    
-            Map.Entry entry = (Map.Entry)iter.next();
-            String  key = (String)entry.getKey(); 
-            System.out.print(key+"\t");
-            strPrint+=key+",";
-            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
-            System.out.print(info_print.modelamount+"\t");
-            strPrint+=info_print.modelamount+",";
-            System.out.print(info_print.sellamount+"\t");
-            strPrint+=info_print.sellamount+",";
-            String result=df.format((float)(info_print.modelamount/8.07));
-            System.out.print(result+"%\t");
-            strPrint+=result+"%,";
-            System.out.print((float)info_print.price/info_print.modelamount+"\n");
-            strPrint+=(float)info_print.price/info_print.modelamount+";\n";
-     }
-     
+	FileWriter writer=new FileWriter(GlobalConfig.ProjacePath+"\\"+"statistics_base_Size.txt");
+	DecimalFormat df = new DecimalFormat("#.###");    
+	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
+	for(int i=1;i<9;i++)
+	{
+		
+		System.out.print(Anasize[i].size+"\t");
+		
+		if(i==0) strPrint+="其他"+",";
+		else strPrint+=Anasize[i].size+",";
+		System.out.print(Anasize[i].modelamount+"\t");
+		strPrint+=Anasize[i].modelamount+",";
+		System.out.print(Anasize[i].sellamount+"\t");
+		strPrint+=Anasize[i].sellamount+",";
+		String result=df.format((float)(Anasize[i].modelamount/8.07));
+		System.out.print(result+"%\t");
+		strPrint+=result+",";
+		System.out.print((float)Anasize[i].price/Anasize[i].modelamount+"\n");
+		strPrint+=(float)Anasize[i].price/Anasize[i].modelamount+";\n";
+	}
+	for(int i=0;i<1;i++)
+	{
+		
+	
+		
+		if(i==0)
+			{
+				strPrint+="其他"+",";
+				System.out.print("其他"+"\t");
+			}
+		else 
+			{
+				strPrint+=Anasize[i].size+",";
+				System.out.print(Anasize[i].size+"\t");
+			}
+		System.out.print(Anasize[i].modelamount+"\t");
+		strPrint+=Anasize[i].modelamount+",";
+		System.out.print(Anasize[i].sellamount+"\t");
+		strPrint+=Anasize[i].sellamount+",";
+		String result=df.format((float)(Anasize[i].modelamount/8.07));
+		System.out.print(result+"%\t");
+		strPrint+=result+",";
+		System.out.print((float)Anasize[i].price/Anasize[i].modelamount+"\n");
+		strPrint+=(float)Anasize[i].price/Anasize[i].modelamount+";\n";
+	}
+//	
+//	Iterator iter = hms.entrySet().iterator();
+//	System.out.println("尺寸\t型号数量\t销量\t该尺寸型号百分比\t平均价格");
+//	FileWriter writer=new FileWriter("D:/result/statistics_base_Size.txt");
+//	String strPrint="尺寸,型号数量,销量,该尺寸型号百分比,平均价格\n";
+//     while(iter.hasNext())
+//     {
+//    	 	DecimalFormat df = new DecimalFormat("#.###");    
+//            Map.Entry entry = (Map.Entry)iter.next();
+//            String  key = (String)entry.getKey(); 
+//            System.out.print(key+"\t");
+//            strPrint+=key+",";
+//            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
+//            System.out.print(info_print.modelamount+"\t");
+//            strPrint+=info_print.modelamount+",";
+//            System.out.print(info_print.sellamount+"\t");
+//            strPrint+=info_print.sellamount+",";
+//            String result=df.format((float)(info_print.modelamount/8.07));
+//            System.out.print(result+"%\t");
+//            strPrint+=result+"%,";
+//            System.out.print((float)info_print.price/info_print.modelamount+"\n");
+//            strPrint+=(float)info_print.price/info_print.modelamount+"\n";
+//     }
+//     
      try {
          writer.write(strPrint);
          writer.flush();
@@ -312,13 +422,10 @@ static void AnalysisBasePrice(Analysis_base_brand aninfo,ComputerInfo computer)
 	
 		if(Anaprice[4].hmp.containsKey(computer.Brand)==false) 
 		{
-			
-
 			Anaprice[4].hmp.put(computer.Brand, aninfo);
 		}
 		  else 
 		     {
-	
 		    	 Analysis_base_brand temp=Anaprice[4].hmp.get(computer.Brand);
 		    	 temp.bad+=aninfo.bad;
 		    	 temp.good+=aninfo.good;
@@ -384,7 +491,8 @@ static void PrintResultBasePrice() throws IOException
 	            Map.Entry entry = (Map.Entry)iter.next();
 	            String  key = (String)entry.getKey(); 
 	            System.out.print(key+"\t");
-	            strPrint+=key+",";
+	            if(key.equals("null")) strPrint+="其他,";
+	            else strPrint+=key+",";
 	            Analysis_base_brand info_print = (Analysis_base_brand)entry.getValue();
 	            DecimalFormat df = new DecimalFormat("#.#####"); 
 	            System.out.print(df.format(((float)info_print.sellamount/Anaprice[i].sellamount)));
@@ -408,6 +516,7 @@ static void PrintResultBasePrice() throws IOException
 }
 static void AnalysisBaseBrand(Analysis_base_brand aninfo,ComputerInfo computer)
 {
+	if(computer.Brand.equals("null")) computer.Brand="其他";
 	if(ht.containsKey(computer.Brand)==false)ht.put(computer.Brand, aninfo);
 	  else 
 	     {
