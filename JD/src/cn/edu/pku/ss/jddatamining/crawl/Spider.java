@@ -13,13 +13,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import cn.edu.pku.ss.jddatamining.util.*;
 public class Spider extends Thread {
 	private String srcURL;
 	private DBManage dbManager;
 	private static long lastTime;
 	private static long currentTime;
-	private long timeThres = 3000;
+	private long timeThres = GlobalConfig.timeThres;
 	
 	public Spider(String srcUrl, DBManage dbManager) {
 		this.srcURL = srcUrl;
@@ -41,6 +41,7 @@ public class Spider extends Thread {
 					continue;
 				System.out.println("开始爬取：" + url);
 				crawlOnePage(url, conn);
+				lastTime = currentTime;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

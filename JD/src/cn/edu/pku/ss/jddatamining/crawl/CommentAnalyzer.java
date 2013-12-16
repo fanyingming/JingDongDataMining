@@ -1,4 +1,5 @@
 package cn.edu.pku.ss.jddatamining.crawl;
+import cn.edu.pku.ss.jddatamining.util.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +15,7 @@ public class CommentAnalyzer extends Thread{
 	private DBManage dbManager;
 	private static long lastTime;
 	private static long currentTime;
-	private long timeThres = 1000;
+	private long timeThres = GlobalConfig.timeThres;
 	
 	public CommentAnalyzer(DBManage dbManager){
 		this.dbManager = dbManager;
@@ -58,6 +59,7 @@ public class CommentAnalyzer extends Thread{
 			} catch (IOException | SQLException | InterruptedException e) {
 				e.printStackTrace();
 			}
+			lastTime = currentTime;
 		}
 	}
 
