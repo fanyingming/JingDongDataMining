@@ -9,4 +9,4 @@ To do list:
 4.存储数据到数据库；Done
 5.进行挖掘；Done
 6.图形表示；Done
-7.整合各部分到一个工程；working
+7.整合各部分到一个工程；Done
