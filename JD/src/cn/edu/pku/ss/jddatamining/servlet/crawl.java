@@ -38,7 +38,7 @@ public class crawl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CrawlerMain.Crawl();
-		String display_content = "Crawl complete!";
+		String display_content = "Crawling...";
 		request.setAttribute("display_content", display_content);
 		request.getRequestDispatcher("success.jsp").forward(request,
 				response);

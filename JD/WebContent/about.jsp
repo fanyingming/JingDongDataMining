@@ -30,6 +30,7 @@
   <body>
   
 
+    <body>
     <div class="navbar-wrapper">
       <div class="container">
 
@@ -42,23 +43,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.jsp">Sales Analysis</a>
+              <a class="navbar-brand" href="index.jsp">JD Notebook Analysis</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
+                <li><a href="crawl">Crawl</a></li>
+                <li><a href="Analyse">Mining</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="statistics_base_brand_combo.jsp">All Brands Computer Sales Analysis Chart</a></li>
-                    <li><a href="analysis_item_1.jsp">All Brands Computer Comments Analysis Chart</a></li>
-                    <li><a href="analysis_item_2.jsp">Sales Percent Chart</a></li>
-                    <li><a href="cpu_analysis_combo.jsp">CPU Analysis Chart</a></li>
-                    <li><a href="size_analysis_combo.jsp">Size Analysis Chart</a></li>
-                    <li><a href="analysis_item_3.jsp">Different Price Range Sales Percent</a></li>
+                    <li><a href="ReadData?type=statistics_base_brand_combo">All Brands Computer Sales Analysis Chart</a></li>
+                    <li><a href="ReadData?type=comment_analyse">All Brands Computer Comments Analysis Chart</a></li>
+                    <li><a href="ReadData?type=sale_share">Sales Percent Chart</a></li>
+                    <li><a href="ReadData?type=cpu_analysis_combo">CPU Analysis Chart</a></li>
+                    <li><a href="ReadData?type=size_analysis_combo">Size Analysis Chart</a></li>
+                    <li><a href="ReadData?type=price_range">Different Price Range Sales Percent</a></li>
                   </ul>
                 </li>
-                <li><a href="memberintro.jsp">About</a></li>
+                <li><a href="about.jsp">About Us</a></li>
               </ul>
             </div>
           </div>
